@@ -1,0 +1,23 @@
+body {
+    font-family: Arial;
+    text-align: center;
+    margin-top: 40px;
+}
+input, button {
+    padding: 10px;
+    margin: 5px;
+}
+table {
+    margin: auto;
+    border-collapse: collapse;
+}
+th {
+    background: #333;
+    color: white;
+}
+td, th {
+    padding: 10px;
+}
+a {
+    color: #0066cc;
+}

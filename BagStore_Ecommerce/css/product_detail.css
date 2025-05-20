@@ -1,0 +1,26 @@
+body {
+    font-family: Arial;
+    text-align: center;
+    margin-top: 30px;
+}
+img {
+    border-radius: 10px;
+}
+a {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 10px 20px;
+    background: #0a6;
+    color: white;
+    text-decoration: none;
+    border-radius: 5px;
+}
+.review {
+    background: #f8f8f8;
+    padding: 10px;
+    border-radius: 6px;
+    margin-bottom: 10px;
+}
+.review strong {
+    color: #333;
+}
