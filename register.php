@@ -25,23 +25,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/header.php'; ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Register</title>
-    <link rel="stylesheet" href="css/register.css">
+    <link rel="stylesheet" href="css/register.css?v=<?= time(); ?>">
 </head>
 <body>
-    <div style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
-        <div>
-            <h2 style="text-align: center;">User Registration</h2>
-            <form method="POST" action="" style="display: flex; flex-direction: column; gap: 10px; min-width: 300px;">
-                <input type="text" name="name" placeholder="Your Name" required>
-                <input type="email" name="email" placeholder="Email Address" required>
-                <input type="password" name="password" placeholder="Password" required>
-                <button type="submit">Register</button>
-            </form>
-            <p style="text-align: center;"><?= $message ?></p>
-        </div>
+    <div class="register-container">
+        <form method="POST" action="">
+            <h2>Create an Account</h2>
+            <input type="text" name="name" placeholder="Full Name" required>
+            <input type="email" name="email" placeholder="Email Address" required>
+            <input type="password" name="password" placeholder="Password" required>
+            <button type="submit">Register</button>
+            <p class="message"><?= $message ?></p>
+        </form>
     </div>
 </body>
 </html>

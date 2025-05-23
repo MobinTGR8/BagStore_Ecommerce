@@ -40,7 +40,7 @@ if (isset($_GET['empty'])) {
 <html>
 <head>
     <title>Your Cart</title>
-    <link rel="stylesheet" href="css/cart.css">
+    <link rel="stylesheet" href="css/cart.css?v=<?= time() ?>">
 </head>
 <body>
     <h1>Your Shopping Cart</h1>

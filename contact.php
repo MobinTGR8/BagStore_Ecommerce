@@ -1,5 +1,6 @@
 <?php
 session_start();
+include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/db.php';
 
 $message_sent = false;
 $error = '';
@@ -15,38 +16,56 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
         $error = 'Please enter a valid email address.';
     } else {
-        // For demo: pretend to send message, in real app send email or save in DB
-        $message_sent = true;
+        // Save to messages table
+        $stmt = $conn->prepare("INSERT INTO messages (name, email, message) VALUES (?, ?, ?)");
+        $stmt->bind_param("sss", $name, $email, $message);
+
+        if ($stmt->execute()) {
+            $message_sent = true;
+        } else {
+            $error = "Database error: " . $conn->error;
+        }
+
+        $stmt->close();
     }
 }
 ?>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/header.php'; ?>
 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="css/contact.css">
+</head>
+<body>
+    <div class="contact-container">
+        <h2>Contact Us</h2>
 
-<div style="max-width:600px; margin:40px auto; padding:20px; border:1px solid #ccc; border-radius:8px;">
-    <h2>Contact Us</h2>
+        <?php if ($message_sent): ?>
+            <p class="success-message">✅ Thank you for contacting us! Your message has been received.</p>
+        <?php else: ?>
+            <?php if ($error): ?>
+                <p class="error-message"><?= htmlspecialchars($error) ?></p>
+            <?php endif; ?>
 
-    <?php if ($message_sent): ?>
-        <p style="color:green;">Thank you for contacting us! We will get back to you shortly.</p>
-    <?php else: ?>
-        <?php if ($error): ?>
-            <p style="color:red;"><?= htmlspecialchars($error) ?></p>
+            <form method="POST" action="contact.php">
+                <label for="name">Name:</label>
+                <input type="text" id="name" name="name" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required>
+
+                <label for="email">Email:</label>
+                <input type="email" id="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required>
+
+                <label for="message">Message:</label>
+                <textarea id="message" name="message" rows="5" required><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea>
+
+                <button type="submit">Send Message</button>
+            </form>
         <?php endif; ?>
-        
-        <form method="post" action="contact.php">
-            <label for="name">Name:</label><br>
-            <input type="text" id="name" name="name" value="<?= htmlspecialchars($_POST['name'] ?? '') ?>" required style="width:100%; padding:8px;"><br><br>
-            
-            <label for="email">Email:</label><br>
-            <input type="email" id="email" name="email" value="<?= htmlspecialchars($_POST['email'] ?? '') ?>" required style="width:100%; padding:8px;"><br><br>
-            
-            <label for="message">Message:</label><br>
-            <textarea id="message" name="message" rows="5" required style="width:100%; padding:8px;"><?= htmlspecialchars($_POST['message'] ?? '') ?></textarea><br><br>
-            
-            <button type="submit" style="background:#0a6; color:#fff; border:none; padding:12px 20px; border-radius:6px; cursor:pointer;">Send Message</button>
-        </form>
-    <?php endif; ?>
-</div>
+    </div>
 
-<?php include 'includes/footer.php'; ?>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/footer.php'; ?>
+</body>
+</html>

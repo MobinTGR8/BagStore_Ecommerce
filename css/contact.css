@@ -1,0 +1,72 @@
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        linear-gradient(to right, rgba(0, 191, 255, 0.1), rgba(224, 231, 255, 0.1)),
+        url('../images/background.jpg') no-repeat center center fixed;
+    background-size: cover;
+}
+
+.contact-container {
+    background-color: rgba(255, 255, 255, 0.95);
+    max-width: 600px;
+    margin: 60px auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+}
+
+.contact-container h2 {
+    text-align: center;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-weight: 500;
+    color: #444;
+}
+
+input, textarea {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+}
+
+textarea {
+    resize: vertical;
+}
+
+button {
+    background-color: #00b894;
+    color: white;
+    border: none;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+button:hover {
+    background-color: #009f7a;
+}
+
+.success {
+    color: green;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.error {
+    color: red;
+    text-align: center;
+    margin-bottom: 20px;
+}

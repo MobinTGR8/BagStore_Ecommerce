@@ -1,1 +1,64 @@
-h1 { color: purple; }
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        linear-gradient(rgba(243, 0, 0, 0.425), rgba(11, 83, 165, 0.658));
+    background-size: cover;
+    color: #fff;
+}
+
+.login-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+}
+
+.login-card {
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 12px;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
+    max-width: 400px;
+    text-align: center;
+}
+
+.login-card h2 {
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #ffffff;
+}
+
+.login-card input {
+    width: 100%;
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 6px;
+    outline: none;
+}
+
+.login-card button {
+    padding: 12px;
+    width: 100%;
+    background-color: #00bfff;
+    color: white;
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
+}
+
+.login-card button:hover {
+    background-color: #0099cc;
+}
+
+.error {
+    color: #ff4d4d;
+    margin-top: 15px;
+    font-weight: bold;
+}

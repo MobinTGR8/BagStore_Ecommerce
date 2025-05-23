@@ -17,9 +17,9 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 </head>
 <body>
 
-<nav class="navbar">
-    <div class="logo">BagStore</div>
-    <ul class="nav-links">
+<nav class="navbar" style="height:50px; min-height:50px; max-height:50px; width:100%; min-width:100%; max-width:100%;">
+    <div class="logo" style="height:100%; display:flex; align-items:center;">BagStore</div>
+    <ul class="nav-links" style="height:100%; display:flex; align-items:center;">
         <li><a href="/BagStore_Ecommerce/index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">Home</a></li>
         <li><a href="/BagStore_Ecommerce/products.php" class="<?= $currentPage === 'products.php' ? 'active' : '' ?>">Products</a></li>
         <li><a href="/BagStore_Ecommerce/cart.php" class="<?= $currentPage === 'cart.php' ? 'active' : '' ?>">Cart</a></li>
@@ -41,8 +41,7 @@ $currentPage = basename($_SERVER['PHP_SELF']);
             <li><a href="/BagStore_Ecommerce/admin_login.php" class="<?= $currentPage === 'admin_login.php' ? 'active' : '' ?>">Admin</a></li>
         <?php endif; ?>
     </ul>
-    <button id="themeToggle" class="theme-toggle">🌙</button>
-
+    <button id="themeToggle" class="theme-toggle" style="width:40px; height:40px; min-width:40px; min-height:40px; max-width:40px; max-height:40px; font-size:20px; display:flex; align-items:center; justify-content:center;">🌙</button>
 </nav>
 
 <script src="/BagStore_Ecommerce/js/script.js"></script>

@@ -1,23 +1,89 @@
 body {
-    font-family: Arial;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f5f7fa;
+    margin: 0;
+    padding: 0;
     text-align: center;
-    margin-top: 40px;
 }
-input, button {
-    padding: 10px;
-    margin: 5px;
+
+h1, h2, h3 {
+    color: #333;
+    margin-top: 30px;
 }
+
+form {
+    background: #fff;
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.05);
+    text-align: left;
+}
+
+input[type="text"],
+input[type="password"],
+button {
+    width: 100%;
+    padding: 12px;
+    margin: 10px 0;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    box-sizing: border-box;
+}
+
+button {
+    background: #4CAF50;
+    color: white;
+    border: none;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #45a049;
+}
+
+.error {
+    color: red;
+    margin-top: 10px;
+}
+
+.success {
+    color: green;
+}
+
 table {
-    margin: auto;
+    width: 90%;
+    margin: 30px auto;
     border-collapse: collapse;
+    background: #fff;
+    box-shadow: 0 0 8px rgba(0,0,0,0.05);
 }
+
+th, td {
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    text-align: center;
+}
+
 th {
     background: #333;
-    color: white;
+    color: #fff;
 }
-td, th {
-    padding: 10px;
-}
+
 a {
     color: #0066cc;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+.back-link {
+    display: inline-block;
+    margin-top: 20px;
+    color: #333;
 }

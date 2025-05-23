@@ -24,15 +24,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <html>
 <head>
     <title>Admin Login</title>
-    <link rel="stylesheet" href="css/admin.css">
+    <link rel="stylesheet" href="css/admin.css?v=1.1">
+
 </head>
 <body>
-    <h2>Admin Login</h2>
-    <form method="POST">
-        <input type="text" name="username" placeholder="Admin Username" required><br><br>
-        <input type="password" name="password" placeholder="Password" required><br><br>
-        <button type="submit">Login</button>
-    </form>
-    <?php if (isset($error)) echo "<p style='color:red;'>$error</p>"; ?>
+    <div style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
+        <div>
+            <h2 style="text-align:center;">Admin Login</h2>
+            <form method="POST" style="display: flex; flex-direction: column; gap: 10px; min-width: 300px;">
+                <input type="text" name="username" placeholder="Admin Username" required>
+                <input type="password" name="password" placeholder="Password" required>
+                <button type="submit">Login</button>
+            </form>
+            <?php if (isset($error)) echo "<p class='error' style='text-align:center;'>$error</p>"; ?>
+        </div>
+    </div>
 </body>
 </html>

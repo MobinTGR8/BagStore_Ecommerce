@@ -24,24 +24,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 ?>
+
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/header.php'; ?>
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+    <meta charset="UTF-8">
     <title>Login</title>
-    <link rel="stylesheet" href="css/login.css">
+    <link rel="stylesheet" href="css/login.css?v=<?= time(); ?>">
+
 </head>
 <body>
-    <div style="display: flex; justify-content: center; align-items: center; min-height: 80vh;">
-        <div>
-            <h2 style="text-align: center;">User Login</h2>
-            <form method="POST" action="" style="display: flex; flex-direction: column; gap: 10px; min-width: 300px;">
+    <div class="login-container">
+        <div class="login-card">
+            <h2>User Login</h2>
+            <form method="POST" action="">
                 <input type="email" name="email" placeholder="Email Address" required>
                 <input type="password" name="password" placeholder="Password" required>
                 <button type="submit">Login</button>
             </form>
-            <p style="text-align: center; color: red;"><?= $message ?></p>
+            <?php if ($message): ?>
+                <p class="error"><?= htmlspecialchars($message) ?></p>
+            <?php endif; ?>
         </div>
     </div>
 </body>
