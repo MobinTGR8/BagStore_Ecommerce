@@ -1,21 +1,105 @@
-body {
-    font-family: Arial;
-    text-align: center;
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, rgba(62, 6, 214, 0.493), rgba(24, 165, 11, 0.6));
+    color: #fff;
+    line-height: 1.6;
+    padding-top: 60px; /* for fixed navbar */
+    min-height: 100vh;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+}
+
+h1 {
+    font-size: 3rem;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #f0f0f0;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
+}
+
 .product-list {
     display: flex;
-    justify-content: center;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 20px;
+    gap: 30px;
+    justify-content: center;
 }
+
 .product {
-    border: 1px solid #ccc;
-    padding: 10px;
-    width: 220px;
-    border-radius: 10px;
-    background: #f9f9f9;
+    background: #fff;
+    color: #333;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    padding: 25px 20px;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-img {
-    border-radius: 5px;
+
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+}
+
+.product img {
+    width: 100%;
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.product h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    font-weight: 700;
+}
+
+.product .price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #667eea; /* Accent color */
+    margin-bottom: 18px;
+}
+
+.product .btn {
+    background: #764ba2;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(118, 75, 162, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product .btn:hover {
+    background: #5a3480;
+    box-shadow: 0 6px 16px rgba(90, 52, 128, 0.8);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .product-list {
+        flex-direction: column;
+        align-items: center;
+    }
+    .product {
+        width: 90%;
+    }
 }

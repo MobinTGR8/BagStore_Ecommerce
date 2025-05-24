@@ -17,29 +17,31 @@ $orders = $conn->query("SELECT * FROM orders WHERE user_id = $user_id ORDER BY c
 <html>
 <head>
     <title>My Orders</title>
-    <link rel="stylesheet" href="css/orders.css">
+    <link rel="stylesheet" href="css/orders.css?v=<?= time() ?>">
 </head>
 <body>
-    <h1>My Orders</h1>
-    <?php if ($orders->num_rows > 0): ?>
-    <table border="1" cellpadding="10">
-        <tr>
-            <th>Order ID</th>
-            <th>Total</th>
-            <th>Date</th>
-            <th>Details</th>
-        </tr>
-        <?php while ($order = $orders->fetch_assoc()): ?>
-        <tr>
-            <td><?= $order['id'] ?></td>
-            <td>$<?= $order['total'] ?></td>
-            <td><?= $order['created_at'] ?></td>
-            <td><a href="order_detail.php?id=<?= $order['id'] ?>">View</a></td>
-        </tr>
-        <?php endwhile; ?>
-    </table>
-    <?php else: ?>
-        <p>You have no orders yet. <a href="products.php">Start shopping</a></p>
-    <?php endif; ?>
+    <div class="container">
+        <h1>My Orders</h1>
+        <?php if ($orders->num_rows > 0): ?>
+        <table>
+            <tr>
+                <th>Order ID</th>
+                <th>Total</th>
+                <th>Date</th>
+                <th>Details</th>
+            </tr>
+            <?php while ($order = $orders->fetch_assoc()): ?>
+            <tr>
+                <td><?= $order['id'] ?></td>
+                <td>$<?= $order['total'] ?></td>
+                <td><?= $order['created_at'] ?></td>
+                <td><a class="button" href="order_detail.php?id=<?= $order['id'] ?>">View</a></td>
+            </tr>
+            <?php endwhile; ?>
+        </table>
+        <?php else: ?>
+            <p class="empty-msg">You have no orders yet. <a class="button" href="products.php">Start shopping</a></p>
+        <?php endif; ?>
+    </div>
 </body>
 </html>

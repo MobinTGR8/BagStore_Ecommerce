@@ -25,7 +25,7 @@ $result = $conn->query($sql);
 <section class="hero" style="text-align:center; padding: 80px 20px; background: rgba(0,191,255,0.0); color: white;">
     <h1>Welcome to BagStore</h1>
     <p>Your one-stop shop for stylish bags</p>
-    <a href="products.php" class="btn" style="background:#fff; color:#00bfff; padding:12px 24px; text-decoration:none; border-radius:5px; font-weight:bold;">Shop Now</a>
+    <a href="products.php" class="btn" style="background:#fff; color:#000; padding:12px 24px; text-decoration:none; border-radius:5px; font-weight:bold;">Shop Now</a>
 </section>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/footer.php'; ?>

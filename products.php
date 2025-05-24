@@ -13,7 +13,18 @@ session_start();
     <link rel="stylesheet" href="css/products.css">
 </head>
 <body>
-    <h1>Available Bags</h1>
+    <h1 class="page-title">Available Bags</h1>
+    <style>
+        .page-title {
+            font-family: 'Montserrat';
+            font-size: 2.5rem;
+            color: white;
+            text-align: center;
+            margin: 40px 0 30px 0;
+            letter-spacing: 1px;
+            font-weight: 700;
+        }
+    </style>
     <div class="product-list">
         <?php
         $sql = "SELECT * FROM products";

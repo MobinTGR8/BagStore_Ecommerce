@@ -18,7 +18,11 @@ $currentPage = basename($_SERVER['PHP_SELF']);
 <body>
 
 <nav class="navbar" style="height:50px; min-height:50px; max-height:50px; width:100%; min-width:100%; max-width:100%;">
-    <div class="logo" style="height:100%; display:flex; align-items:center;">BagStore</div>
+    <div class="logo" style="height:100%; display:flex; align-items:center;">
+    <a href="/BagStore_Ecommerce/index.php" style="text-decoration: none; color: inherit;">BagStore</a>
+</div>
+
+
     <ul class="nav-links" style="height:100%; display:flex; align-items:center;">
         <li><a href="/BagStore_Ecommerce/index.php" class="<?= $currentPage === 'index.php' ? 'active' : '' ?>">Home</a></li>
         <li><a href="/BagStore_Ecommerce/products.php" class="<?= $currentPage === 'products.php' ? 'active' : '' ?>">Products</a></li>

@@ -1,22 +1,86 @@
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --text-color: #fdfdfd;
+    --table-bg: #ffffff;
+    --nav-bg: #222e3c;
+    --nav-text: #fff;
+}
+
 body {
-    font-family: Arial;
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
+}
+
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+h1 {
+    margin-bottom: 20px;
+    color: #333;
     text-align: center;
-    margin-top: 40px;
 }
+
 table {
-    width: 80%;
-    margin: auto;
+    width: 100%;
     border-collapse: collapse;
+    background: var(--table-bg);
+    color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
+
+th, td {
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
+}
+
 th {
-    background: #333;
+    background: var(--nav-bg);
+    color: var(--nav-text);
+}
+
+tr:hover {
+    background-color: #f1f5ff;
+}
+
+.button {
+    background: var(--primary-color);
     color: white;
-}
-td, th {
-    padding: 10px;
-    border: 1px solid #ccc;
-}
-a {
-    color: #0066cc;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 6px;
     text-decoration: none;
+    display: inline-block;
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
+}
+
+.button:hover {
+    background: #5867e8;
+    transform: translateY(-2px);
+}
+
+.empty-msg {
+    text-align: center;
+    font-size: 18px;
+    padding: 20px;
 }

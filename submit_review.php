@@ -18,7 +18,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_SESSION['user_id'])) {
     $sql = "INSERT INTO reviews (product_id, user_id, rating, comment) 
             VALUES ($product_id, $user_id, $rating, '$comment')";
     if ($conn->query($sql)) {
-        header("Location: product_details.php?id=" . $product_id);
+        header("Location: product_detail.php?id=" . $product_id);
         exit;
     } else {
         echo "Error: " . $conn->error;

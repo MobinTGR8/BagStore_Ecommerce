@@ -8,11 +8,27 @@ if (!isset($_SESSION['user_id'])) {
 }
 
 if (empty($_SESSION['cart'])) {
-    echo "<p>Your cart is empty. <a href='products.php'>Shop Now</a></p>";
+    include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/header.php';
+    echo '
+    <!DOCTYPE html>
+    <html>
+    <head>
+        <title>Checkout</title>
+        <style>
+            body { color: #fff; }
+        </style>
+        <link rel="stylesheet" href="css/checkout.css?v=' . time() . '">
+    </head>
+    <body>
+        <div class="empty-cart-msg">
+            <h2>Your cart is empty.</h2>
+            <a href="products.php" class="btn browse-btn">Shop Now</a>
+        </div>
+    </body>
+    </html>';
     exit();
 }
 
-$errors = [];
 $success = '';
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
@@ -42,38 +58,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $_SESSION['cart'] = [];
     $success = "Order placed successfully! Thank you, $name.";
 }
+
+include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/header.php';
 ?>
-<?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/header.php'; ?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <title>Checkout</title>
-    <link rel="stylesheet" href="css/checkout.css">
+    <link rel="stylesheet" href="css/checkout.css?v=<?= time() ?>">
 </head>
 <body>
-    <h1>Checkout</h1>
 
-    <?php if ($success): ?>
-        <p style="color:green;"><?= $success ?></p>
-        <a href="products.php">Continue Shopping</a>
-    <?php else: ?>
-        <form method="POST" action="process_order.php">
-    <input type="text" name="name" placeholder="Your Name" required>
-    <textarea name="address" placeholder="Shipping Address" required></textarea>
-    
-    <select name="payment_method" required>
-        <option value="cod">Cash on Delivery</option>
-        <option value="credit_card">Credit Card</option>
-        <option value="bkash">Bkash</option>
-        <option value="nagad">Nagad</option>
-    </select>
+<h1>Checkout</h1>
 
-    <button type="submit">Place Order</button>
-</form>
+<?php if ($success): ?>
+    <div class="success-msg">
+        <p><?= $success ?></p>
+        <a href="products.php" class="btn">Continue Shopping</a>
+    </div>
+<?php else: ?>
+    <form method="POST" action="checkout.php" class="checkout-form">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <textarea name="address" placeholder="Shipping Address" required></textarea>
 
+        <select name="payment_method" required>
+            <option value="">Select Payment Method</option>
+            <option value="cod">Cash on Delivery</option>
+            <option value="credit_card">Credit Card</option>
+            <option value="bkash">Bkash</option>
+            <option value="nagad">Nagad</option>
+        </select>
 
-        
-    <?php endif; ?>
+        <button type="submit" class="btn">Place Order</button>
+    </form>
+<?php endif; ?>
+
 </body>
 </html>
