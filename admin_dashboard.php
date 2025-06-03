@@ -1,49 +1,56 @@
 <?php
 session_start();
-include 'includes/db.php';
+include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/db.php'; // Corrected path
 
-if (!isset($_SESSION['admin'])) {
-    header("Location: admin_login.php");
+if (!isset($_SESSION['admin_id'])) { // Changed to check for admin_id for consistency if login sets that
+    header("Location: /BagStore_Ecommerce/admin_login.php"); // Absolute path
     exit();
 }
 
-$orders = $conn->query("SELECT * FROM orders ORDER BY created_at DESC");
+// Fetch orders - consider pagination for many orders
+$orders_result = $conn->query("SELECT * FROM orders ORDER BY created_at DESC");
+
+$pageTitle = "Admin Dashboard - Orders";
+$pageSpecificCss = "/BagStore_Ecommerce/css/admin.css?v=" . time(); // Added cache buster
+$body_class = "admin-page"; // Add a general class for admin pages
 ?>
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/header.php'; ?>
 
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Admin Dashboard</title>
-    <link rel="stylesheet" href="css/admin.css?v=1.1">
-
-</head>
-<body>
-    <div style="display: flex; justify-content: center; align-items: center; min-height: 80vh; flex-direction: column;">
+<main class="admin-main-container">
+    <div class="container orders-page-container"> <!-- Reusing .container from global, and specific class -->
         <h1>Admin Dashboard</h1>
-        <h3>All Orders</h3>
-        <table>
-            <tr>
-                <th>Order ID</th>
-                <th>Customer</th>
-                <th>Address</th>
-                <th>Total</th>
-                <th>Date</th>
-                <th>Action</th>
-            </tr>
-            <?php while ($row = $orders->fetch_assoc()): ?>
-            <tr>
-    <td><?= $row['id'] ?></td>
-    <td><?= $row['customer_name'] ?></td>
-    <td><?= $row['address'] ?></td>
-    <td>$<?= number_format($row['total'], 2) ?></td>
-    <td><?= $row['created_at'] ?></td>
-    <td><a href="admin_order_detail.php?id=<?= $row['id'] ?>" class="action-link">View Items</a></td>
-</tr>
+        <h2>All Orders</h2>
+        <?php if ($orders_result && $orders_result->num_rows > 0): ?>
+        <div class="table-responsive-wrapper">
+            <table>
+                <thead>
+                    <tr>
+                        <th>Order ID</th>
+                        <th>Customer Name</th>
+                        <th>Address</th>
+                        <th>Total</th>
+                        <th>Date</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <?php while ($order = $orders_result->fetch_assoc()): ?>
+                    <tr>
+                        <td data-label="Order ID"><?= htmlspecialchars($order['id']) ?></td>
+                        <td data-label="Customer Name"><?= htmlspecialchars($order['customer_name']) ?></td>
+                        <td data-label="Address"><?= htmlspecialchars($order['address']) ?></td>
+                        <td data-label="Total">$<?= htmlspecialchars(number_format($order['total'], 2)) ?></td>
+                        <td data-label="Date"><?= htmlspecialchars(date("M d, Y H:i", strtotime($order['created_at']))) ?></td>
+                        <td data-label="Action"><a href="/BagStore_Ecommerce/admin_order_detail.php?id=<?= htmlspecialchars($order['id']) ?>" class="btn btn-secondary btn-sm">View</a></td>
+                    </tr>
+                    <?php endwhile; ?>
+                </tbody>
+            </table>
+        </div>
+        <?php else: ?>
+            <p class="empty-msg">No orders found.</p>
+        <?php endif; ?>
+    </div>
+</main>
 
-             <?php endwhile; ?>
-         </table>
-    
-</body>
-
-</html>
+<?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/footer.php'; ?>

@@ -1,132 +1,170 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* cart.css */
+/* The initial * reset is handled by css/index.css */
 
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+/* Body styling is inherited from css/index.css.
+   If a unique background for the cart page is desired,
+   a class like body.cart-page-specific-background should be added to cart.php's body tag. */
+body.cart-page-specific-background { /* Example */
     background: linear-gradient(rgba(55, 0, 255, 0.425), rgba(255, 2, 2, 0.658));
-    color: #fff;
-    padding-top: 60px;
-    min-height: 100vh;
+    /* color: #fff; /* Careful with global text color override */
 }
 
-.cart-container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
+.cart-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 60px); /* Assumes 60px navbar height */
+    padding: var(--spacing-unit);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.cart-page-container {
+    max-width: 1000px; /* Or var(--container-max-width) */
+    width: 100%;
+    margin-top: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit);
+    padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 1.5); /* ~20px 24px */
+    background: rgba(var(--bg-color-rgb, 255, 255, 255), 0.1); /* Theme-aware with fallback */
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
+    color: var(--text-color); /* Default text color inside container */
+}
+body.cart-page-specific-background .cart-page-container {
+    background: rgba(255, 255, 255, 0.15); /* Keep lighter overlay on specific BG */
+    color: #333; /* Ensure text is readable on this specific overlay */
+}
+body.cart-page-specific-background h1 { /* H1 if outside container but on specific BG */
+    color: #fff;
 }
 
-h1 {
+
+h1 { /* Page Title */
     text-align: center;
-    margin-bottom: 30px;
-    font-size: 2.5rem;
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    font-size: calc(var(--font-size-base) * 1.8); /* ~29px, uses global heading scale */
+    color: var(--text-color); /* Theme text color */
+    font-weight: var(--font-weight-bold);
 }
 
 .table-wrapper {
     overflow-x: auto;
+    border-radius: var(--border-radius-base);
+    margin-bottom: calc(var(--spacing-unit) * 1.25);
+    box-shadow: var(--box-shadow-sm);
+    border: 1px solid transparent; /* For theme border */
 }
+body.light-theme .table-wrapper { border-color: #ddd; }
+body.dark-theme .table-wrapper { border-color: #444; }
+
 
 table {
     width: 100%;
+    min-width: 600px; /* Adjusted min-width */
     border-collapse: collapse;
-    background: #fff;
-    color: #333;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: var(--bg-color); /* Theme background for table */
+    color: var(--text-color);   /* Theme text for table */
 }
 
 th, td {
-    padding: 14px 20px;
+    padding: var(--spacing-unit); /* Approx 16px */
     text-align: center;
-    border-bottom: 1px solid #e0e0e0;
+    border-bottom: 1px solid var(--border-color, #e0e0e0); /* Theme-aware border */
+    vertical-align: middle;
+    font-size: var(--font-size-base);
 }
+body.light-theme th, body.light-theme td { border-color: #dee2e6; }
+body.dark-theme th, body.dark-theme td { border-color: #454d55; }
+
 
 th {
-    background: #764ba2;
-    color: #fff;
-    font-weight: bold;
-    font-size: 1rem;
+    background: var(--nav-bg); /* Use nav background for table headers for consistency */
+    color: var(--nav-text);
+    font-weight: var(--font-weight-bold);
+    font-size: var(--font-size-sm); /* Approx 14px */
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
-tr:last-child td {
-    border-bottom: none;
+tbody tr:hover {
+    background-color: rgba(var(--text-color-rgb, 0,0,0), 0.05); /* Subtle hover based on text color */
 }
 
 .grand-total td {
-    background: #f5f5f5;
-    color: #222;
-    font-size: 1.1rem;
-    font-weight: bold;
+    background: rgba(var(--text-color-rgb, 0,0,0), 0.08); /* Slightly more prominent BG for grand total */
+    color: var(--text-color);
+    font-size: calc(var(--font-size-base) * 1.05); /* ~17px */
+    font-weight: var(--font-weight-bold);
+    border-top: 2px solid var(--accent-color); /* Use accent color for separator */
+}
+.grand-total .grand-total-label { text-align: right; }
+.grand-total .grand-total-value { text-align: center; }
+
+
+.cart-actions {
+    text-align: center;
+    margin-top: calc(var(--spacing-unit) * 1.25);
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: var(--spacing-unit); /* Approx 16px */
 }
 
-a.btn, .btn-secondary, .btn-danger {
-    display: inline-block;
-    margin: 15px 10px 0;
-    padding: 12px 24px;
-    font-size: 1rem;
-    font-weight: bold;
-    text-decoration: none;
-    border-radius: 10px;
-    transition: background 0.3s, transform 0.2s;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+/* Buttons in .cart-actions should use global .btn, .btn-secondary classes from PHP */
+/* Example: <a class="btn" href="...">Checkout</a> */
+/* Example: <a class="btn btn-secondary" href="...">Empty Cart</a> */
+/* The .btn-danger for remove is already a global class */
+
+.btn.btn-checkout { /* If further customization is needed beyond global .btn */
+    /* background-color: var(--btn-success-bg); /* Example if a success color is defined */
 }
 
-a.btn {
-    background: #28a745;
-    color: #fff;
+.btn-secondary.btn-empty-cart { /* If customization needed beyond global .btn-secondary */
+    /* background-color: var(--btn-warning-bg); /* Example if a warning color is defined */
 }
 
-a.btn:hover {
-    background: #218838;
-    transform: translateY(-2px);
+/* .btn-danger is already defined globally in index.css for remove actions */
+/* Ensure .btn-danger in table cells is small enough if needed */
+td .btn-danger { /* Style for .btn-danger specifically within a table cell */
+    padding: calc(var(--spacing-unit)*0.35) calc(var(--spacing-unit)*0.7); /* Smaller padding */
+    font-size: var(--font-size-sm);
 }
 
-a.btn-secondary {
-    background: #ffc107;
-    color: #333;
-}
-
-a.btn-secondary:hover {
-    background: #e0a800;
-    transform: translateY(-2px);
-}
-
-a.btn-danger {
-    background: #dc3545;
-    color: #fff;
-}
-
-a.btn-danger:hover {
-    background: #c82333;
-    transform: translateY(-2px);
-}
 
 .empty-msg {
     text-align: center;
-    font-size: 1.2rem;
-    color: #fff;
+    font-size: var(--font-size-lg);
+    color: var(--text-color); /* This message is inside cart-page-container */
+    padding: var(--spacing-unit) 0;
 }
-
-.empty-msg a {
-    color: #ffd;
-    text-decoration: underline;
+.empty-msg a { /* Link style already handled by global 'a' styles */
+    font-weight: var(--font-weight-bold); /* Make it bolder */
 }
 
 @media (max-width: 768px) {
+    .cart-page-container { padding: var(--spacing-unit) calc(var(--spacing-unit)*0.75); }
+    h1 { font-size: calc(var(--font-size-base) * 1.6); } /* ~25px */
     th, td {
-        padding: 10px;
-        font-size: 0.9rem;
+        padding: calc(var(--spacing-unit)*0.6) calc(var(--spacing-unit)*0.5); /* ~10px 8px */
+        font-size: var(--font-size-sm); /* ~14px */
     }
+    table { min-width: 500px; }
+    /* Button sizing is handled by global .btn and its font-size var, no specific change needed unless desired */
+}
 
-    h1 {
-        font-size: 2rem;
+@media (max-width: 480px) {
+    h1 { font-size: calc(var(--font-size-base) * 1.4); } /* ~22px */
+    .cart-actions {
+        flex-direction: column;
     }
+    .cart-actions .btn, .cart-actions .btn-secondary { /* Ensure buttons take full width when stacked */
+        width: 100%;
+    }
+    td .btn-danger { /* Further reduce padding for remove button if needed */
+        padding: calc(var(--spacing-unit)*0.25) calc(var(--spacing-unit)*0.5);
+        font-size: calc(var(--font-size-sm)*0.9);
+    }
+    table { min-width: auto; } /* Allow table to be as small as content, rely on overflow scroll */
 }
