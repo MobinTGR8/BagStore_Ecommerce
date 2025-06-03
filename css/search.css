@@ -1,0 +1,140 @@
+/* search.css */
+
+/* Body styling is inherited from css/index.css.
+   This page has a unique gradient background. Scope with a class if needed. */
+body.search-page-specific-background { /* Example */
+    background: linear-gradient(to right, rgba(var(--accent-color-rgb,0,191,255),0.5), rgba(var(--link-color-rgb,52,152,219),0.6));
+    /* color: #fff; */
+}
+
+.search-main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-height: calc(100vh - 60px); /* Assumes 60px navbar height */
+    padding: var(--spacing-unit);
+    box-sizing: border-box;
+    width: 100%;
+}
+
+.search-page-container {
+    max-width: 1200px; /* Or var(--container-max-width) */
+    width: 100%;
+    margin-top: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit);
+    padding: var(--spacing-unit) calc(var(--spacing-unit)*0.75); /* ~16px 12px */
+    background: rgba(var(--bg-color-rgb, 255, 255, 255), 0.1); /* Theme-aware with fallback */
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    color: var(--text-color); /* Default text color inside container */
+}
+body.search-page-specific-background .search-page-container {
+    background: rgba(255, 255, 255, 0.1); /* Keep light overlay on specific BG */
+    color: #333; /* Ensure text is readable on this specific overlay */
+}
+body.search-page-specific-background .search-page-container h1 {
+     color: #fff; /* H1 if outside container but on specific BG */
+}
+
+
+.search-page-container h1 { /* Page Title / Search Results Title */
+    font-family: 'Montserrat', sans-serif; /* Keep specific font if intended */
+    font-size: calc(var(--font-size-base) * 1.8); /* ~29px, aligns with global H2 or a slightly larger H2 */
+    color: var(--text-color); /* Theme text color */
+    text-align: center;
+    margin-top: var(--spacing-unit);
+    margin-bottom: calc(var(--spacing-unit) * 1.5);
+    letter-spacing: 0.5px; /* Reduced letter spacing */
+    font-weight: var(--font-weight-bold);
+    text-shadow: 0 1px 3px rgba(0,0,0,0.15); /* Softer shadow */
+}
+
+/* Message Styling */
+.search-prompt,
+.search-no-results {
+    text-align: center;
+    padding: calc(var(--spacing-unit)*1.5) var(--spacing-unit); /* ~24px 16px */
+    margin: var(--spacing-unit) auto;
+    max-width: 700px;
+    background-color: rgba(var(--bg-color-rgb,255,255,255),0.9); /* Theme-aware message box */
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow-sm);
+    color: var(--text-color);
+    border: 1px solid transparent;
+}
+body.light-theme .search-prompt,
+body.light-theme .search-no-results { border-color: #ddd; }
+body.dark-theme .search-prompt,
+body.dark-theme .search-no-results { border-color: #444; background-color: rgba(var(--bg-color-rgb, 40,40,40),0.92); }
+
+
+.search-prompt p,
+.search-no-results p {
+    font-size: var(--font-size-lg); /* ~20px */
+    margin-bottom: calc(var(--spacing-unit)*0.5);
+}
+.search-no-results p:last-child { margin-bottom: 0; }
+
+.search-no-results a { /* Link style from global 'a' */
+    font-weight: var(--font-weight-bold); /* Make it bolder */
+}
+
+/* Product Listing Styles - reuse .product-list and .product-card from products.css by ensuring search.php uses these classes */
+/* If minor variations for search results are needed, they can be added here, but ideally, they are consistent. */
+.product-list.search-results-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); /* Slightly adjusted minmax */
+    gap: calc(var(--spacing-unit) * 1.25); /* ~20px */
+    justify-content: center;
+    padding-top: var(--spacing-unit);
+}
+
+/* .product-card styles are assumed to be inherited from products.css or index.css (if made global)
+   If not, copy them here and adapt using variables.
+   For this exercise, we assume PHP uses the same classes as products.php, so product-card styles from products.css will apply.
+   Any specific overrides for search results can go here. For example: */
+.search-results-grid .product-card {
+    /* Example: slightly different shadow or border for search results */
+    /* box-shadow: var(--box-shadow-sm); */
+}
+.search-results-grid .product-card img {
+    max-height: 180px; /* Slightly smaller images for search results */
+}
+.search-results-grid .product-card h3 {
+    font-size: calc(var(--font-size-base) * 1.1); /* ~17-18px */
+}
+.search-results-grid .product-card .price {
+    font-size: var(--font-size-base); /* ~16px */
+}
+/* Ensure .btn and .btn-add-to-cart are styled by global rules or products.css rules */
+
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+    .search-page-container h1 {
+        font-size: calc(var(--font-size-base) * 1.6); /* ~25px */
+    }
+    .product-list.search-results-grid {
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* Further adjust for tablets */
+        gap: var(--spacing-unit); /* ~16px */
+    }
+    .search-prompt p,
+    .search-no-results p {
+        font-size: var(--font-size-base); /* ~16px */
+    }
+}
+
+@media (max-width: 480px) {
+    .search-page-container h1 {
+        font-size: calc(var(--font-size-base) * 1.4); /* ~22px */
+        margin-bottom: var(--spacing-unit);
+    }
+    .product-list.search-results-grid {
+        grid-template-columns: 1fr; /* Single column */
+    }
+    .search-prompt, .search-no-results {
+        padding: var(--spacing-unit);
+    }
+}

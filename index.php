@@ -1,6 +1,7 @@
 <?php
 session_start();
 $pageTitle = "Bag Store - Home";
+$body_class = "homepage-background"; // Add this line
 include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/header.php';
 require_once $_SERVER['DOCUMENT_ROOT'].'/BagStore_Ecommerce/includes/db.php';
 
@@ -9,23 +10,32 @@ $sql = "SELECT * FROM products ORDER BY id DESC LIMIT 4";
 $result = $conn->query($sql);
 ?>
 
-<!-- Add background image style -->
-<style>
-    body {
-        min-height: 100vh;
-        margin: 0;
-        background: 
-            linear-gradient(120deg, rgba(0,191,255,0.2) 0%, rgba(224,231,255,0.2) 100%),
-            url('/BagStore_Ecommerce/images/background.jpg') no-repeat center center fixed;
-        background-size: cover;
-    }
-</style>
-
-
-<section class="hero" style="text-align:center; padding: 80px 20px; background: rgba(0,191,255,0.0); color: white;">
+<section class="hero hero-home">
     <h1>Welcome to BagStore</h1>
     <p>Your one-stop shop for stylish bags</p>
-    <a href="products.php" class="btn" style="background:#fff; color:#000; padding:12px 24px; text-decoration:none; border-radius:5px; font-weight:bold;">Shop Now</a>
+    <a href="products.php" class="btn btn-hero">Shop Now</a>
+</section>
+
+<section class="featured-products">
+    <div class="container">
+        <h2>Latest Products</h2>
+        <div class="product-grid">
+            <?php if ($result->num_rows > 0): ?>
+                <?php while($product = $result->fetch_assoc()): ?>
+                    <div class="product-card">
+                        <a href="product_detail.php?id=<?php echo $product['id']; ?>">
+                            <img src="/BagStore_Ecommerce/images/<?php echo htmlspecialchars($product['image_path']); ?>" alt="<?php echo htmlspecialchars($product['name']); ?>">
+                        </a>
+                        <h3><?php echo htmlspecialchars($product['name']); ?></h3>
+                        <p class="price">$<?php echo htmlspecialchars($product['price']); ?></p>
+                        <a href="product_detail.php?id=<?php echo $product['id']; ?>" class="btn">View Details</a>
+                    </div>
+                <?php endwhile; ?>
+            <?php else: ?>
+                <p>No products found.</p>
+            <?php endif; ?>
+        </div>
+    </div>
 </section>
 
 <?php include $_SERVER['DOCUMENT_ROOT'] . '/BagStore_Ecommerce/includes/footer.php'; ?>

@@ -1,165 +1,308 @@
-* {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-}
+/* product_detail.css */
+/* The initial * reset is handled by css/index.css */
 
-body {
-    font-family: 'Segoe UI', Tahoma, sans-serif;
+/* Body styling is inherited from css/index.css if not overridden.
+   This page has a unique gradient background. We might want to make this
+   a class applied to body in product_detail.php, e.g., body.product-detail-background */
+body.product-detail-page-specific-background { /* Apply this class in product_detail.php if this specific BG is desired */
     background: linear-gradient(180deg, #8000ff, #5fa30c);
-    color: #fff;
-    padding-top: 60px;
-    min-height: 100vh;
+    color: #fff; /* Default text for this gradient */
 }
 
-main.detail-container {
-    max-width: 1000px;
-    margin: auto;
-    padding: 40px 20px;
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 16px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
+/* Assuming product_detail.php also uses a <main class="...-main-container"> wrapper */
+/* If not, .detail-container might need to handle min-height and padding from navbar itself */
+main.detail-container { /* This is the main content wrapper for this page */
+    max-width: 1000px; /* Or var(--container-max-width) if defined and appropriate */
+    margin: var(--spacing-unit) auto; /* Centering with spacing */
+    padding: calc(var(--spacing-unit) * 1.5) var(--spacing-unit); /* Approx 24px 16px */
+    background: rgba(var(--bg-color-rgb, 0,0,0), 0.2); /* Use a var for opacity base if available, or specific for this page */
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow-lg); /* Use global shadow */
+    backdrop-filter: blur(8px); /* Slightly less blur */
+    -webkit-backdrop-filter: blur(8px);
+    color: var(--text-color); /* Text inside should use theme color */
 }
+body.product-detail-page-specific-background main.detail-container {
+    background: rgba(255, 255, 255, 0.1); /* Keep light overlay if on specific gradient BG */
+    color: #fff; /* Keep white text if on specific gradient BG */
+}
+
 
 .product-info {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
-    gap: 30px;
-    margin-bottom: 40px;
+    align-items: flex-start; /* Align items to top */
+    gap: calc(var(--spacing-unit) * 1.5); /* Approx 24px */
+    margin-bottom: calc(var(--spacing-unit) * 2); /* Approx 32px */
 }
 
 .product-info img {
-    max-width: 300px;
+    max-width: 350px; /* Slightly larger max-width for product image */
     width: 100%;
-    border-radius: 12px;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+    border-radius: var(--border-radius-base);
+    box-shadow: var(--box-shadow);
+    border: 3px solid rgba(var(--text-color-rgb, 255,255,255),0.1); /* Subtle border */
 }
+body.product-detail-page-specific-background .product-info img {
+     border: 3px solid rgba(255,255,255,0.1);
+}
+
 
 .details {
     flex: 1;
+    min-width: 300px; /* Ensure details section doesn't get too squished */
+    color: var(--text-color); /* Use theme text color */
+}
+body.product-detail-page-specific-background .details {
+    color: #fff; /* Override for specific BG */
+}
+
+
+.details h1 { /* Should align with global H1, or be specific */
+    font-size: calc(var(--font-size-base) * 2); /* Approx 32px */
+    margin-bottom: var(--spacing-unit);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color); /* Theme color */
+}
+body.product-detail-page-specific-background .details h1 {
     color: #fff;
 }
 
-.details h1 {
-    font-size: 2.5rem;
-    margin-bottom: 20px;
-}
 
 .details .desc {
-    margin-bottom: 20px;
-    line-height: 1.6;
-    color: #eee;
+    margin-bottom: var(--spacing-unit);
+    line-height: var(--line-height-base);
+    font-size: var(--font-size-base);
+    color: var(--text-color); /* Theme color */
 }
+body.product-detail-page-specific-background .details .desc {
+    color: #eee; /* Lighter for readability on dark gradient */
+}
+
 
 .details .price {
-    font-size: 1.5rem;
-    font-weight: bold;
-    color: #ffdb58;
-    margin-bottom: 20px;
+    font-size: calc(var(--font-size-base) * 1.4); /* Approx 22px */
+    font-weight: var(--font-weight-bold);
+    color: var(--accent-color); /* Use accent color for price */
+    margin-bottom: calc(var(--spacing-unit) * 1.25);
+}
+body.product-detail-page-specific-background .details .price {
+    color: #ffdb58; /* Keep specific color on gradient */
 }
 
-.btn {
-    display: inline-block;
-    background: #764ba2;
-    color: #fff;
-    padding: 12px 24px;
-    border-radius: 10px;
+
+/* This .btn rule is specific to product_detail.css.
+   It should be replaced by applying global .btn class in PHP.
+   If customization is needed, create a new class like .btn-add-to-cart-detail */
+.details .btn { /* Assuming this is "Add to Cart" button */
+    /* Apply global .btn styles in PHP: <a class="btn" href="...">Add to Cart</a> */
+    /* This rule can then be removed or made more specific if needed */
+    display: inline-block; /* from global .btn */
+    font-weight: var(--font-weight-bold); /* from global .btn */
+    color: var(--btn-primary-text); /* from global .btn */
+    background-color: var(--btn-primary-bg); /* from global .btn */
+    padding: calc(var(--spacing-unit)*0.6) calc(var(--spacing-unit)*1.2); /* Approx 10px 20px */
+    font-size: calc(var(--font-size-base) * 1.05); /* Slightly larger than base */
+    border-radius: var(--border-radius-base);
     text-decoration: none;
-    font-weight: 600;
-    box-shadow: 0 4px 12px rgba(118, 75, 162, 0.6);
-    transition: background 0.3s ease;
+    box-shadow: var(--box-shadow-sm);
+    transition: all 0.2s ease;
+}
+.details .btn:hover { /* from global .btn */
+    background-color: var(--btn-primary-hover-bg);
+    transform: translateY(-1px);
+    box-shadow: var(--box-shadow);
 }
 
-.btn:hover {
-    background: #5a3480;
+
+.reviews, .review-form {
+    margin-top: calc(var(--spacing-unit) * 2.5); /* Approx 40px */
+    padding-top: var(--spacing-unit);
+    border-top: 1px solid rgba(var(--text-color-rgb, 0,0,0), 0.1); /* Theme-aware border */
+}
+body.product-detail-page-specific-background .reviews,
+body.product-detail-page-specific-background .review-form {
+    border-top: 1px solid rgba(255,255,255,0.2);
 }
 
-.reviews {
-    margin-top: 40px;
+
+.reviews h2, .review-form h2 { /* Should align with global H2 */
+    font-size: calc(var(--font-size-base) * 1.6); /* Approx 25-26px */
+    margin-bottom: var(--spacing-unit);
+    color: var(--text-color);
+}
+body.product-detail-page-specific-background .reviews h2,
+body.product-detail-page-specific-background .review-form h2 {
+    color: #fff;
 }
 
-.reviews h2 {
-    font-size: 1.8rem;
-    margin-bottom: 20px;
-}
 
 .review {
-    background: #fff;
-    color: #333;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 20px;
-    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    background: var(--bg-color); /* Theme background for review cards */
+    color: var(--text-color);   /* Theme text for review cards */
+    border-radius: var(--border-radius-base);
+    padding: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit);
+    box-shadow: var(--box-shadow-sm);
+    border: 1px solid transparent; /* For theme border */
 }
+body.light-theme .review { border-color: #ddd; }
+body.dark-theme .review { border-color: #444; }
+
 
 .review strong {
-    font-size: 1rem;
-    color: #222;
+    font-size: var(--font-size-base);
+    font-weight: var(--font-weight-bold);
+    color: var(--text-color); /* Use main text color, slightly emphasized by weight */
 }
 
 .review small {
-    color: #666;
-    font-size: 0.8rem;
+    color: var(--text-color); /* Use main text color, with opacity for deemphasis */
+    opacity: 0.75;
+    font-size: var(--font-size-sm); /* Approx 14px */
+    display: block; /* Make it block for margin */
+    margin-bottom: calc(var(--spacing-unit) * 0.25);
 }
 
 .review p {
-    margin-top: 10px;
-}
-
-.review-form {
-    margin-top: 50px;
-}
-
-.review-form h2 {
-    font-size: 1.6rem;
-    margin-bottom: 20px;
+    margin-top: calc(var(--spacing-unit) * 0.5);
+    font-size: var(--font-size-base);
+    line-height: var(--line-height-base);
 }
 
 .review-form form {
-    background: #fff;
-    color: #333;
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    background: var(--bg-color);
+    color: var(--text-color);
+    padding: var(--spacing-unit);
+    border-radius: var(--border-radius-lg);
+    box-shadow: var(--box-shadow);
+    border: 1px solid transparent;
 }
+body.light-theme .review-form form { border-color: #ddd; }
+body.dark-theme .review-form form { border-color: #444; }
+
 
 .review-form input[type="number"],
 .review-form textarea {
     width: 100%;
-    margin-bottom: 15px;
-    padding: 10px;
-    font-size: 1rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
+    margin-bottom: var(--spacing-unit);
+    padding: calc(var(--spacing-unit) * 0.6); /* Approx 10px */
+    font-size: var(--font-size-base);
+    border: 1px solid #ccc; /* Standard border */
+    border-radius: var(--border-radius-base);
+    background-color: var(--bg-color); /* Theme aware input background */
+    color: var(--text-color); /* Theme aware input text color */
+}
+body.light-theme .review-form input[type="number"],
+body.light-theme .review-form textarea {
+    border-color: #ccc;
+}
+body.dark-theme .review-form input[type="number"],
+body.dark-theme .review-form textarea {
+    border-color: #555; /* Darker border for dark inputs */
 }
 
+
+/* This button should use global .btn class in PHP */
 .review-form button {
-    background: #764ba2;
-    color: #fff;
-    border: none;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border-radius: 8px;
+    /* Example: <button type="submit" class="btn">Submit Review</button> */
+    /* This rule can be removed or made more specific */
+    display: inline-block;
+    font-weight: var(--font-weight-bold);
+    color: var(--btn-primary-text);
+    background-color: var(--btn-primary-bg);
+    padding: calc(var(--spacing-unit)*0.6) calc(var(--spacing-unit)*1.2);
+    font-size: var(--font-size-base);
+    border-radius: var(--border-radius-base);
     cursor: pointer;
-    transition: background 0.3s ease;
+    transition: all 0.2s ease;
+    border: none; /* Assuming from global .btn */
 }
-
 .review-form button:hover {
-    background: #5a3480;
+    background-color: var(--btn-primary-hover-bg);
+    transform: translateY(-1px);
 }
 
-a:not(nav a) {
-    color: #ffd;
+/* General link styling within .detail-container if not covered by global 'a' */
+/* The a:not(nav a) is too broad and can be problematic. Remove if possible. */
+/* If specific links need styling, target them directly. */
+main.detail-container a:not(.btn) { /* More specific than a:not(nav a) */
+    color: var(--link-color);
     text-decoration: underline;
 }
+main.detail-container a:not(.btn):hover {
+    color: var(--link-hover);
+}
+body.product-detail-page-specific-background main.detail-container a:not(.btn) {
+    color: #ffd; /* Keep specific color on gradient if needed */
+}
+body.product-detail-page-specific-background main.detail-container a:not(.btn):hover {
+    color: #fff;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
     .product-info {
         flex-direction: column;
-        text-align: center;
+        align-items: center; /* Center items in column */
+        gap: var(--spacing-unit);
     }
+    .product-info img {
+        max-width: 80%; /* Adjust image size for tablet */
+    }
+    .details {
+        text-align: center; /* Center details text on tablet when stacked */
+        width: 100%;
+    }
+    .details h1 { font-size: calc(var(--font-size-base) * 1.8); } /* ~29px */
+    .details .price { font-size: calc(var(--font-size-base) * 1.25); } /* ~20px */
+
+    .reviews h2, .review-form h2 { font-size: calc(var(--font-size-base) * 1.4); } /* ~22px */
+
+    .review-form input[type="number"],
+    .review-form textarea,
+    .review-form button,
+    .details .btn { /* Ensure all buttons/inputs are consistently sized */
+        font-size: calc(var(--font-size-base) * 0.95); /* ~15px */
+        padding: calc(var(--spacing-unit)*0.5) var(--spacing-unit); /* ~8px 16px */
+    }
+}
+
+@media (max-width: 480px) {
+    main.detail-container {
+        padding: var(--spacing-unit) calc(var(--spacing-unit)*0.5); /* ~16px 8px */
+    }
+    .product-info img {
+        max-width: 100%; /* Full width on mobile */
+    }
+    .details h1 { font-size: calc(var(--font-size-base) * 1.6); } /* ~25px */
+    .details .desc { font-size: calc(var(--font-size-base) * 0.9); } /* ~14px */
+    .details .price { font-size: calc(var(--font-size-base) * 1.15); } /* ~18px */
+
+    .reviews h2, .review-form h2 { font-size: calc(var(--font-size-base) * 1.25); } /* ~20px */
+    .review { padding: calc(var(--spacing-unit)*0.75); } /* ~12px */
+    .review strong { font-size: calc(var(--font-size-base)*0.9); }
+    .review p { font-size: calc(var(--font-size-base)*0.85); } /* ~13-14px */
+    .review-form form { padding: calc(var(--spacing-unit)*0.75); }
+}
+
+/* Styles for review submission messages, if not already covered by global .form-message */
+.review-form .form-message { /* Scoped to review form area */
+    padding: var(--spacing-unit);
+    margin-bottom: var(--spacing-unit);
+    border-radius: var(--border-radius-base);
+    text-align: center;
+    font-weight: var(--font-weight-normal);
+    font-size: var(--font-size-sm);
+}
+.review-form .form-message.success-message {
+    background-color: var(--success-bg, #d4edda); /* Fallback colors if vars not defined */
+    color: var(--success-text, #155724);
+    border: 1px solid var(--success-border, #c3e6cb);
+}
+.review-form .form-message.error-message {
+    background-color: var(--danger-bg, #f8d7da);
+    color: var(--danger-text, #721c24);
+    border: 1px solid var(--danger-border, #f5c2c7);
 }
