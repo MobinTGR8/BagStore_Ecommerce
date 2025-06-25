@@ -1,163 +1,105 @@
-/* products.css */
-/* The initial * reset is handled by css/index.css */
-
-/* Body styling is inherited from css/index.css, including padding-top for navbar */
-/* This body rule can be removed if the background is meant to be global dark/light theme */
-body.products-page-specific-background { /* Example: if a very specific BG is needed ONLY for products page */
-    background: linear-gradient(to right, rgba(62, 6, 214, 0.493), rgba(24, 165, 11, 0.6));
-    /* color: #fff; /* This would override theme text color, be careful */
-}
-
-.products-main-container {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: calc(100vh - 60px); /* Assumes 60px navbar height */
-    padding: var(--spacing-unit); /* Use spacing unit */
+* {
     box-sizing: border-box;
-    width: 100%;
+    margin: 0;
+    padding: 0;
 }
 
-.products-page-container {
-    /* Apply global .container styles directly in PHP if possible, or replicate here with variables */
-    max-width: 1200px; /* Or var(--container-max-width) if defined */
-    width: 100%;
-    margin-top: var(--spacing-unit);
-    margin-bottom: var(--spacing-unit);
-    padding: var(--spacing-unit);
-    background: rgba(var(--bg-color-rgb, 255, 255, 255), 0.1); /* Use var with fallback or specific var */
-    border-radius: var(--border-radius-lg); /* Use global border radius */
-    box-shadow: var(--box-shadow); /* Use global shadow */
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(to right, rgba(62, 6, 214, 0.493), rgba(24, 165, 11, 0.6));
+    color: #fff;
+    line-height: 1.6;
+    padding-top: 60px; /* for fixed navbar */
+    min-height: 100vh;
+}
+
+main {
+    max-width: 1200px;
+    margin: auto;
+    padding: 40px 20px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 16px;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.25);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
 
-.page-title {
-    font-family: 'Montserrat', sans-serif; /* Keep specific font if intended */
-    font-size: calc(var(--font-size-base) * 2.2); /* Adjusted to use base, ~35px */
-    color: var(--text-color); /* Should use theme text color if inside container, or specific if outside */
+h1 {
+    font-size: 3rem;
     text-align: center;
-    margin-top: var(--spacing-unit);
-    margin-bottom: calc(var(--spacing-unit) * 1.5);
-    letter-spacing: 1px;
-    font-weight: var(--font-weight-bold);
-    text-shadow: 0 1px 3px rgba(0,0,0,0.2); /* Softened shadow */
+    margin-bottom: 40px;
+    color: #f0f0f0;
+    text-shadow: 0 2px 6px rgba(0,0,0,0.3);
 }
-/* If .page-title is outside .products-page-container and on a dark BG */
-body.products-page-specific-background .page-title {
-    color: #fff; /* Keep white if on the specific gradient */
-}
-
 
 .product-list {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Adjusted minmax */
-    gap: calc(var(--spacing-unit) * 1.25); /* Approx 20px */
+    display: flex;
+    flex-wrap: wrap;
+    gap: 30px;
     justify-content: center;
 }
 
-.product-card {
-    background: var(--bg-color); /* Use theme background for cards */
-    color: var(--text-color);   /* Use theme text color for card content */
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--box-shadow);
-    padding: var(--spacing-unit); /* Approx 16px */
+.product {
+    background: #fff;
+    color: #333;
+    border-radius: 14px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.15);
+    padding: 25px 20px;
+    width: 260px;
     display: flex;
     flex-direction: column;
     align-items: center;
-    text-align: center;
-    transition: transform 0.25s ease, box-shadow 0.25s ease; /* Slightly faster transition */
-    border: 1px solid transparent; /* For theme compatibility */
-}
-body.light-theme .product-card {
-    border-color: #ddd; /* Light border for light theme cards */
-}
-body.dark-theme .product-card {
-    border-color: #444; /* Darker border for dark theme cards */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-
-.product-card:hover {
-    transform: translateY(-6px); /* Slightly less hover effect */
-    box-shadow: var(--box-shadow-lg); /* Use larger shadow on hover */
+.product:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
 }
 
-.product-card img {
+.product img {
     width: 100%;
-    max-height: 200px; /* Adjusted max height */
-    object-fit: cover;
-    border-radius: var(--border-radius-base); /* Use global border radius */
-    margin-bottom: var(--spacing-unit);
+    border-radius: 12px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
 }
 
-.product-card h3 {
-    font-size: calc(var(--font-size-base) * 1.2); /* Approx 19px */
-    margin-bottom: calc(var(--spacing-unit) * 0.5); /* Approx 8px */
-    font-weight: var(--font-weight-bold); /* Use global bold */
+.product h3 {
+    font-size: 1.4rem;
+    margin-bottom: 12px;
+    font-weight: 700;
 }
-.product-card h3 a {
-    color: var(--text-color); /* Inherit themed text color */
+
+.product .price {
+    font-size: 1.25rem;
+    font-weight: 700;
+    color: #667eea; /* Accent color */
+    margin-bottom: 18px;
+}
+
+.product .btn {
+    background: #764ba2;
+    color: #fff;
+    padding: 12px 24px;
+    border-radius: 10px;
     text-decoration: none;
-}
-.product-card h3 a:hover {
-    color: var(--link-hover); /* Use themed link hover color */
-    text-decoration: underline;
-}
-
-.product-card .price {
-    font-size: calc(var(--font-size-base) * 1.1); /* Approx 17-18px */
-    font-weight: var(--font-weight-bold);
-    color: var(--link-color); /* Use themed link color for price, or a specific accent */
-    margin-bottom: var(--spacing-unit);
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(118, 75, 162, 0.6);
+    transition: background 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Apply global .btn styles directly to the <a> tag in PHP for Add to Cart */
-/* Example: <a href="..." class="btn">Add to Cart</a> */
-/* If specific styling is still needed for .btn-add-to-cart beyond .btn: */
-.product-card .btn.btn-add-to-cart {
-    /* This class would now primarily be for very specific overrides if .btn isn't enough */
-    /* For example, if it needs a different color than primary .btn */
-    /* background-color: var(--accent-color); */
-    /* color: var(--text-color-on-accent); */
-    width: 100%; /* Keep full width if desired */
-    margin-top: auto; /* Push button to the bottom of the card */
+.product .btn:hover {
+    background: #5a3480;
+    box-shadow: 0 6px 16px rgba(90, 52, 128, 0.8);
 }
 
-
-.empty-msg {
-    text-align: center;
-    font-size: var(--font-size-lg);
-    color: var(--text-color);
-    padding: var(--spacing-unit);
-}
-
-/* Responsive adjustments */
+/* Responsive */
 @media (max-width: 768px) {
-    .page-title {
-        font-size: calc(var(--font-size-base) * 1.8); /* ~29px */
-    }
     .product-list {
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); /* Adjust minmax */
-        gap: var(--spacing-unit); /* ~16px */
+        flex-direction: column;
+        align-items: center;
     }
-    .product-card h3 {
-        font-size: calc(var(--font-size-base) * 1.1); /* ~17-18px */
-    }
-    .product-card .price {
-        font-size: var(--font-size-base); /* ~16px */
-    }
-}
-
-@media (max-width: 480px) {
-    .products-page-container { padding: var(--spacing-unit) calc(var(--spacing-unit)*0.75); }
-    .page-title {
-        font-size: calc(var(--font-size-base) * 1.6); /* ~25px */
-        margin-bottom: var(--spacing-unit);
-    }
-    .product-list {
-        grid-template-columns: 1fr; /* Single column */
-    }
-    .product-card img {
-        max-height: 180px;
+    .product {
+        width: 90%;
     }
 }

@@ -1,234 +1,97 @@
-/* checkout.css */
-
-body.checkout-page-specific-background { /* Optional: if a specific BG for checkout is desired */
-    background: linear-gradient(135deg, #7B1FA2 0%, #4CAF50 100%); /* Example: Purple to Green gradient */
+:root {
+    --primary-color: #007bff;
+    --bg-color: #f2f4f8;
+    --card-bg: #ffffff;
+    --text-color: #333;
 }
 
-.checkout-container {
-    width: 100%;
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, #920000 0%, #5de900 100%);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: var(--spacing-unit);
-    flex-grow: 1;
-    justify-content: flex-start; /* Align content to top */
-}
-
-.checkout-container h1 { /* Page Title */
-    font-size: calc(var(--font-size-base) * 2); /* ~32px */
-    margin-bottom: calc(var(--spacing-unit) * 1.5);
-    color: var(--text-color);
-    text-align: center;
-    font-weight: var(--font-weight-bold);
-}
-body.checkout-page-specific-background .checkout-container h1 {
-    color: #fff; /* White title if on the specific gradient background */
-}
-
-.checkout-message.error-message { /* For validation errors from process_order */
-    background-color: var(--danger-bg, #f8d7da);
-    color: var(--danger-text, #721c24);
-    border: 1px solid var(--danger-border, #f5c2c7);
-    padding: var(--spacing-unit);
-    border-radius: var(--border-radius-base);
-    margin-bottom: var(--spacing-unit);
-    width: 100%;
-    max-width: 900px; /* Match .checkout-layout max-width */
-    box-sizing: border-box;
-}
-.checkout-message.error-message h4 {
-    margin-top: 0;
-    margin-bottom: calc(var(--spacing-unit) * 0.5);
-    font-size: var(--font-size-base);
-}
-.checkout-message.error-message ul {
-    margin-bottom: 0;
-    padding-left: var(--spacing-unit);
-    font-size: var(--font-size-sm);
-    list-style-position: inside;
+    justify-content: flex-start;
+    padding-top: 60px;
 }
 
 
-.checkout-layout {
-    display: flex;
-    flex-direction: column;
-    gap: calc(var(--spacing-unit) * 1.5); /* Space between form and summary when stacked */
-    width: 100%;
-    max-width: 900px; /* Max width for the two-column layout area */
-    margin: 0 auto; /* Center the layout container */
+h1 {
+    font-size: 32px;
+    margin-bottom: 30px;
 }
 
-.order-summary-section,
-.checkout-form-section {
-    background: var(--bg-color);
-    padding: calc(var(--spacing-unit) * 1.25); /* ~20px */
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--box-shadow);
-    border: 1px solid transparent;
-    color: var(--text-color);
-}
-body.light-theme .order-summary-section,
-body.light-theme .checkout-form-section { border-color: #ddd; }
-body.dark-theme .order-summary-section,
-body.dark-theme .checkout-form-section { border-color: #444; background-color: #2c2c2c; }
-
-
-.order-summary-section h2,
-.checkout-form-section h2 {
-    font-size: calc(var(--font-size-base) * 1.5); /* ~24px */
-    margin-top: 0; /* Remove top margin as section has padding */
-    margin-bottom: var(--spacing-unit);
-    text-align: center;
-    border-bottom: 1px solid var(--border-color, #eee);
-    padding-bottom: calc(var(--spacing-unit) * 0.5);
-    color: var(--text-color);
-}
-body.light-theme .order-summary-section h2,
-body.light-theme .checkout-form-section h2 { border-color: #eee; }
-body.dark-theme .order-summary-section h2,
-body.dark-theme .checkout-form-section h2 { border-color: #454d55; }
-
-
-/* Cart Summary Table in Checkout */
-.cart-summary table {
-    width: 100%;
-    border-collapse: collapse;
-    font-size: var(--font-size-sm); /* ~14px */
-}
-.cart-summary th, .cart-summary td {
-    text-align: left;
-    padding: calc(var(--spacing-unit) * 0.6); /* ~10px */
-    border-bottom: 1px solid var(--border-color, #eee);
-    vertical-align: middle;
-}
-body.light-theme .cart-summary th, body.light-theme .cart-summary td { border-color: #eee; }
-body.dark-theme .cart-summary th, body.dark-theme .cart-summary td { border-color: #454d55; }
-
-.cart-summary th {
-    background-color: rgba(var(--text-color-rgb, 0,0,0), 0.03); /* Very subtle header */
-    font-weight: var(--font-weight-bold);
-}
-.cart-summary img.cart-summary-image {
-    width: 45px; /* Slightly smaller image in summary */
-    height: 45px;
-    object-fit: cover;
-    border-radius: var(--border-radius-base);
-    margin-right: calc(var(--spacing-unit) * 0.5);
-}
-.cart-summary tfoot .grand-total td {
-    font-weight: var(--font-weight-bold);
-    font-size: var(--font-size-base); /* Base size for grand total */
-    border-top: 2px solid var(--text-color); /* Stronger separator */
-}
-
-/* Checkout Form Specifics */
-.checkout-form div { /* Wrapper for label/input groups */
-    margin-bottom: var(--spacing-unit);
-}
-.checkout-form label {
-    display: block;
-    margin-bottom: calc(var(--spacing-unit) * 0.4);
-    font-weight: var(--font-weight-bold);
-    color: var(--text-color);
-    font-size: var(--font-size-sm);
-}
-.checkout-form input[type="text"],
-.checkout-form input[type="email"],
-.checkout-form input[type="tel"],
-.checkout-form textarea,
-.checkout-form select {
-    width: 100%;
-    padding: calc(var(--spacing-unit) * 0.6);
-    font-size: var(--font-size-base);
-    border-radius: var(--border-radius-base);
-    border: 1px solid #ccc; /* Default */
-    font-family: var(--font-family-sans-serif);
-    background: var(--bg-color);
-    color: var(--text-color);
-    box-sizing: border-box;
-}
-body.light-theme .checkout-form input, body.light-theme .checkout-form textarea, body.light-theme .checkout-form select { border-color: #ccc; }
-body.dark-theme .checkout-form input, body.dark-theme .checkout-form textarea, body.dark-theme .checkout-form select { border-color: #555; background-color: #2c2c2c; }
-
-.checkout-form textarea {
-    resize: vertical;
-    min-height: calc(var(--spacing-unit) * 5); /* Approx 80px */
-}
-.checkout-form .btn { /* Ensure button uses global styles, this is for width/margin */
-    width: 100%;
-    margin-top: var(--spacing-unit);
-}
-
-
-.empty-cart-msg { /* For the case where checkout is accessed with empty cart */
-    background: var(--bg-color);
-    color: var(--text-color);
-    padding: calc(var(--spacing-unit) * 1.5);
+.checkout-form, .empty-cart-msg, .success-msg {
+    background: var(--card-bg);
+    padding: 30px 25px;
     max-width: 500px;
     width: 90%;
-    border-radius: var(--border-radius-lg);
-    box-shadow: var(--box-shadow);
+    border-radius: 12px;
+    box-shadow: 0 6px 20px rgba(0,0,0,0.06);
     text-align: center;
-    border: 1px solid transparent;
 }
-body.light-theme .empty-cart-msg { border-color: #ddd; }
-body.dark-theme .empty-cart-msg { border-color: #444; background-color: #2c2c2c; }
+
+input, textarea, select {
+    width: 100%;
+    padding: 12px;
+    font-size: 16px;
+    border-radius: 8px;
+    border: 1px solid #ccc;
+    margin-bottom: 15px;
+    font-family: inherit;
+    background: #fff;
+}
+
+textarea {
+    resize: vertical;
+    min-height: 100px;
+}
+
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: #fff;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.3s, transform 0.2s;
+    text-decoration: none;
+}
+
+.btn:hover {
+    background: #0056b3;
+    transform: translateY(-2px);
+}
 
 .empty-cart-msg h2 {
-    color: var(--text-color);
-    font-size: var(--font-size-lg);
-    margin-bottom: var(--spacing-unit);
-}
-/* .browse-btn should use global .btn and .btn-primary or .btn-secondary */
-
-
-@media (min-width: 769px) { /* Two-column layout for larger screens */
-    .checkout-layout {
-        flex-direction: row;
-        align-items: flex-start;
-    }
-    .order-summary-section {
-        flex: 1 1 38%; /* Slightly less space for summary */
-        max-width: 380px; /* Max width for summary aesthetics */
-        position: sticky; /* Make summary sticky on scroll */
-        top: calc(60px + var(--spacing-unit)); /* Navbar height + spacing */
-    }
-    .checkout-form-section {
-        flex: 1 1 60%;
-    }
+    color: #444;
+    font-size: 24px;
+    margin-bottom: 20px;
 }
 
-@media (max-width: 768px) {
-    .checkout-container h1 {
-        font-size: calc(var(--font-size-base) * 1.75);
-    }
-    .checkout-form, .empty-cart-msg,
-    .order-summary-section, .checkout-form-section {
-        padding: var(--spacing-unit);
-    }
-    .checkout-form input, .checkout-form textarea, .checkout-form select {
-        font-size: calc(var(--font-size-base) * 0.95);
-    }
+.success-msg {
+    background: #d4edda;
+    border: 1px solid #c3e6cb;
+    color: #155724;
 }
 
-@media (max-width: 480px) {
-    .checkout-container {
-        padding: calc(var(--spacing-unit) * 0.5);
-    }
-    .checkout-container h1 {
-        font-size: calc(var(--font-size-base) * 1.5);
-        margin-bottom: var(--spacing-unit);
-    }
-    .checkout-form, .empty-cart-msg,
-    .order-summary-section, .checkout-form-section {
-        padding: var(--spacing-unit) calc(var(--spacing-unit) * 0.75);
-        width: 100%; /* Sections take full width of padded container */
-    }
-    .checkout-form input, .checkout-form textarea, .checkout-form select {
-        padding: calc(var(--spacing-unit) * 0.5);
-        font-size: calc(var(--font-size-base) * 0.9);
-    }
-    .empty-cart-msg h2 {
-        font-size: var(--font-size-lg);
-    }
+.success-msg p {
+    margin-bottom: 20px;
+    font-size: 18px;
+}
+#credit_card_fields input,
+#mobile_payment_fields input {
+    width: 300px;
+    padding: 10px;
+    margin: 5px 0;
+    font-size: 16px;
 }

@@ -1,9 +1,7 @@
-<footer class="site-footer">
+<footer style="background:#333; color:#fff; text-align:center; padding:15px; margin-top:40px;">
     <p>&copy; <?= date('Y') ?> BagStore. All rights reserved.</p>
-    <div class="footer-links">
-        <a href="/BagStore_Ecommerce/index.php">Home</a>
-        <a href="/BagStore_Ecommerce/contact.php">Contact Us</a>
-        <!-- Add other footer links here if needed -->
-    </div>
+    <p>
+        <a href="index.php" style="color:#0af; text-decoration:none;">Home</a> | 
+        <a href="contact.php" style="color:#0af; text-decoration:none;">Contact Us</a>
+    </p>
 </footer>
-</html>

@@ -1,150 +1,64 @@
-/* login.css */
-
-/* Body styling is inherited from css/index.css.
-   This page has a unique gradient background. Scope with a class if needed. */
-body.login-page-specific-background { /* Example: if this specific BG is desired for login page */
-    background: linear-gradient(rgba(55, 0, 255, 0.425), rgba(30, 255, 0, 0.658));
-    /* color: #fff; /* Text color for the gradient page */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        linear-gradient(rgba(55, 0, 255, 0.425), rgba(30, 255, 0, 0.658));
+    background-size: cover;
+    color: #fff;
 }
 
-.login-main-container {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: calc(100vh - 60px); /* Assumes 60px navbar height */
-    padding: var(--spacing-unit);
-    box-sizing: border-box;
-}
-
-/* .login-container might be redundant if .login-main-container centers .login-card directly */
 .login-container {
-    width: 100%;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
 }
 
 .login-card {
-    background-color: rgba(var(--bg-color-rgb, 255, 255, 255), 0.15); /* Theme-aware with fallback */
-    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 1.25); /* ~24px 20px */
-    border-radius: var(--border-radius-lg); /* Use global var */
+    background-color: rgba(255, 255, 255, 0.1);
+    padding: 40px;
+    border-radius: 12px;
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: var(--box-shadow-lg); /* Use global var */
-    width: 100%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+    width: 90%;
     max-width: 400px;
     text-align: center;
-    color: var(--text-color); /* Theme text color for card content */
-    border: 1px solid transparent; /* For theme border */
 }
-body.login-page-specific-background .login-card {
-    background-color: rgba(255, 255, 255, 0.15); /* Keep light overlay on specific BG */
-    color: #333; /* Ensure text is readable on this specific overlay */
-}
-body.light-theme .login-card { border-color: #ddd; } /* Example theme border */
-body.dark-theme .login-card { border-color: #444; } /* Example theme border */
-
 
 .login-card h2 {
-    margin-bottom: calc(var(--spacing-unit) * 1.25); /* ~20px */
-    font-size: calc(var(--font-size-base) * 1.75); /* ~28px, aligns with global H2 */
-    color: var(--text-color); /* Theme text color */
-    font-weight: var(--font-weight-bold);
-}
-body.login-page-specific-background .login-card h2 { color: #333; }
-
-
-.login-card form div {
-    margin-bottom: var(--spacing-unit); /* ~16px */
-    text-align: left;
+    margin-bottom: 20px;
+    font-size: 26px;
+    color: #000000;
 }
 
-.login-card label {
-    display: block;
-    margin-bottom: calc(var(--spacing-unit) * 0.3); /* ~5px */
-    font-weight: var(--font-weight-bold); /* Bolder labels */
-    color: var(--text-color);
-    font-size: var(--font-size-sm); /* ~14px */
-}
-
-.login-card input[type="email"],
-.login-card input[type="password"] {
+.login-card input {
     width: 100%;
-    padding: calc(var(--spacing-unit) * 0.75); /* ~12px */
-    border: 1px solid #ccc; /* Default, can be themed */
-    border-radius: var(--border-radius-base);
+    padding: 12px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 6px;
     outline: none;
-    box-sizing: border-box;
-    font-size: var(--font-size-base);
-    color: var(--text-color);
-    background-color: var(--bg-color); /* Theme input background */
-}
-body.light-theme .login-card input[type="email"],
-body.light-theme .login-card input[type="password"] {
-    border-color: #ccc;
-}
-body.dark-theme .login-card input[type="email"],
-body.dark-theme .login-card input[type="password"] {
-    border-color: #555;
-    background-color: #2c2c2c;
 }
 
-
-.login-card input[type="email"]:focus,
-.login-card input[type="password"]:focus {
-    border-color: var(--link-color); /* Use themed link color for focus */
-    box-shadow: 0 0 0 0.2rem rgba(var(--link-color-rgb, 0, 123, 255), 0.25); /* Themed focus shadow */
-}
-
-/* Login button should use global .btn class in PHP */
-/* Example: <button type="submit" class="btn">Login</button> */
-.login-card button[type="submit"] {
-    /* This rule is for ensuring full width if .btn doesn't do it, or for specific margin */
+.login-card button {
+    padding: 12px;
     width: 100%;
-    margin-top: calc(var(--spacing-unit) * 0.5); /* ~8px */
-    /* Other styles like padding, bg-color, color, etc., come from .btn */
+    background-color: #00bfff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    margin-top: 10px;
+    transition: background-color 0.3s ease;
 }
 
-.error-message {
-    color: var(--danger-text, #721c24); /* Assuming a --danger-text variable or fallback */
-    background-color: var(--danger-bg, rgba(248, 215, 218, 0.9)); /* Assuming --danger-bg or fallback */
-    border: 1px solid var(--danger-border, #f5c6cb); /* Assuming --danger-border or fallback */
-    border-radius: var(--border-radius-base);
-    padding: var(--spacing-unit);
-    margin-top: var(--spacing-unit);
-    font-weight: var(--font-weight-normal);
-    font-size: var(--font-size-sm);
+.login-card button:hover {
+    background-color: #0099cc;
 }
 
-.form-switch-link {
-    margin-top: var(--spacing-unit);
-    font-size: var(--font-size-sm);
-    color: var(--text-color);
-    opacity: 0.9;
-}
-.form-switch-link a { /* Link color already handled by global 'a' styles */
-    font-weight: var(--font-weight-bold);
-}
-
-/* Responsive adjustments */
-@media (max-width: 480px) {
-    .login-main-container {
-        padding: calc(var(--spacing-unit) * 0.75); /* ~12px */
-    }
-    .login-card {
-        padding: calc(var(--spacing-unit) * 1.25) var(--spacing-unit); /* ~20px 16px */
-    }
-    .login-card h2 {
-        font-size: calc(var(--font-size-base) * 1.5); /* ~24px */
-    }
-    .login-card input[type="email"],
-    .login-card input[type="password"],
-    .login-card button[type="submit"] { /* Button padding comes from .btn */
-        font-size: calc(var(--font-size-base) * 0.95); /* ~15px */
-    }
-    .login-card label,
-    .error-message,
-    .form-switch-link {
-        font-size: calc(var(--font-size-sm) * 0.95); /* Slightly smaller for these texts on mobile */
-    }
+.error {
+    color: #ff4d4d;
+    margin-top: 15px;
+    font-weight: bold;
 }

@@ -1,195 +1,86 @@
-/* orders.css */
-/* Remove local :root variables if they are now covered by global vars in index.css,
-   or ensure they are intentionally specific for this page. */
-/* For example, --primary-color, --secondary-color, --text-color-dark etc. might be replaced by global vars. */
-
-/* Body styling is inherited from css/index.css.
-   This page has a unique gradient background. Scope with a class if needed. */
-body.orders-page-specific-background { /* Example: if this specific BG is desired */
-    background: linear-gradient(135deg, var(--link-color), var(--accent-color)); /* Using global theme colors */
-    /* color: var(--text-color-on-gradient, #f0f0f0); /* Use a global var or fallback */
+:root {
+    --primary-color: #667eea;
+    --secondary-color: #764ba2;
+    --text-color: #fdfdfd;
+    --table-bg: #ffffff;
+    --nav-bg: #222e3c;
+    --nav-text: #fff;
 }
 
-.orders-main-container {
+body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    color: var(--text-color);
+    min-height: 100vh;
     display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: calc(100vh - 60px); /* Assumes 60px navbar height */
-    padding: var(--spacing-unit);
-    box-sizing: border-box;
-    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    padding-top: 60px;
 }
 
-.container.orders-page-container { /* Renamed from just .container for specificity */
-    background: var(--bg-color); /* Theme background for the card */
-    color: var(--text-color);    /* Theme text for card content */
-    padding: calc(var(--spacing-unit) * 1.25) calc(var(--spacing-unit) * 1.5); /* ~20px 24px */
-    border-radius: var(--border-radius-lg);
-    width: 100%;
-    max-width: 900px; /* Or var(--container-max-width) */
-    box-shadow: var(--box-shadow);
-    margin-top: var(--spacing-unit);
-    margin-bottom: var(--spacing-unit);
-    border: 1px solid transparent;
+.container {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 30px;
+    border-radius: 12px;
+    width: 90%;
+    max-width: 900px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
-body.light-theme .container.orders-page-container { border-color: #ddd; }
-body.dark-theme .container.orders-page-container { border-color: #444; }
 
-
-h1, h2, h3 { /* These will inherit from global h1,h2,h3 in index.css */
-    margin-bottom: var(--spacing-unit);
-    color: var(--text-color); /* Ensure they use theme text color */
+h1 {
+    margin-bottom: 20px;
+    color: #333;
     text-align: center;
 }
-/* Specific adjustments if needed, e.g., different font sizes than global */
-.container.orders-page-container h1 { font-size: calc(var(--font-size-base) * 1.8); } /* ~29px */
-.container.orders-page-container h2 { font-size: calc(var(--font-size-base) * 1.5); margin-top: calc(var(--spacing-unit)*1.5); } /* ~24px */
-.container.orders-page-container h3 { font-size: calc(var(--font-size-base) * 1.25); } /* ~20px */
-
-
-.order-summary-card {
-    background-color: rgba(var(--text-color-rgb, 0,0,0), 0.03); /* Subtle bg based on text color */
-    padding: var(--spacing-unit);
-    border-radius: var(--border-radius-base);
-    margin-bottom: calc(var(--spacing-unit) * 1.5);
-    border: 1px solid rgba(var(--text-color-rgb, 0,0,0), 0.1); /* Theme-aware border */
-}
-
-.order-summary-card p {
-    margin-bottom: calc(var(--spacing-unit) * 0.5);
-    font-size: var(--font-size-base);
-    line-height: var(--line-height-base);
-}
-.order-summary-card p strong {
-    color: var(--text-color); /* Use themed text color, emphasized by weight */
-    margin-right: calc(var(--spacing-unit) * 0.5);
-}
-
-.table-responsive-wrapper {
-    overflow-x: auto;
-    width: 100%;
-    margin-bottom: var(--spacing-unit);
-    border-radius: var(--border-radius-base);
-    box-shadow: var(--box-shadow-sm);
-    border: 1px solid transparent; /* For theme border */
-}
-body.light-theme .table-responsive-wrapper { border-color: #ddd; }
-body.dark-theme .table-responsive-wrapper { border-color: #444; }
-
 
 table {
     width: 100%;
-    min-width: 550px; /* Adjusted min-width */
     border-collapse: collapse;
-    background: var(--bg-color); /* Theme background for table */
-    color: var(--text-color);   /* Theme text for table */
+    background: var(--table-bg);
+    color: #333;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
 }
 
 th, td {
-    padding: calc(var(--spacing-unit) * 0.75) var(--spacing-unit); /* ~12px 16px */
-    text-align: left;
-    border-bottom: 1px solid var(--border-color, #e0e0e0); /* Theme-aware border */
-    vertical-align: middle;
-}
-body.light-theme th, body.light-theme td { border-color: #dee2e6; }
-body.dark-theme th, body.dark-theme td { border-color: #454d55; }
-
-thead tr {
-   border-bottom: 2px solid var(--nav-bg); /* Use nav background color for stronger header border */
+    padding: 12px 16px;
+    text-align: center;
+    border-bottom: 1px solid #e0e0e0;
 }
 
 th {
-    background: var(--nav-bg); /* Use nav background for table headers */
+    background: var(--nav-bg);
     color: var(--nav-text);
-    font-weight: var(--font-weight-bold);
-    text-transform: uppercase;
-    font-size: var(--font-size-sm); /* ~14px */
-    letter-spacing: 0.5px;
 }
 
-tbody tr:hover {
-    background-color: rgba(var(--text-color-rgb, 0,0,0), 0.05); /* Subtle hover */
-}
-tbody td {
-    font-size: var(--font-size-sm); /* ~14px for table data */
+tr:hover {
+    background-color: #f1f5ff;
 }
 
-/* Buttons should use global .btn class from index.css applied in PHP */
-/* Example: <a class="btn" href="...">View</a> */
-/* The .button class here can be removed if global .btn is used. */
-.button { /* This is a local override/definition, ensure it aligns with global .btn */
-    background: var(--btn-primary-bg);
-    color: var(--btn-primary-text);
-    padding: calc(var(--spacing-unit)*0.4) calc(var(--spacing-unit)*0.8); /* ~6px 12px for smaller table buttons */
+.button {
+    background: var(--primary-color);
+    color: white;
+    padding: 8px 16px;
     border: none;
-    border-radius: var(--border-radius-base);
+    border-radius: 6px;
     text-decoration: none;
     display: inline-block;
-    font-weight: var(--font-weight-normal); /* Normal weight for table buttons */
-    transition: background-color 0.2s ease, transform 0.15s ease;
-    font-size: var(--font-size-sm);
-}
-.button:hover {
-    background: var(--btn-primary-hover-bg);
-    transform: translateY(-1px);
-    box-shadow: var(--box-shadow-sm);
+    font-weight: 600;
+    transition: background 0.3s ease, transform 0.2s ease;
 }
 
+.button:hover {
+    background: #5867e8;
+    transform: translateY(-2px);
+}
 
 .empty-msg {
     text-align: center;
-    font-size: var(--font-size-lg);
-    padding: calc(var(--spacing-unit) * 1.25);
-    color: var(--text-color);
-}
-.empty-msg.error-message { /* Standardized error message styling */
-    color: var(--danger-text, #721c24);
-    background-color: var(--danger-bg, rgba(248, 215, 218, 0.9));
-    border: 1px solid var(--danger-border, #f5c6cb);
-    border-radius: var(--border-radius-base);
-}
-.empty-msg a.button { /* If a button is inside an empty message */
-    font-size: var(--font-size-base); /* Reset to base button size if needed */
-    padding: calc(var(--spacing-unit) * 0.5) var(--spacing-unit);
-}
-
-
-.actions-container {
-    text-align: center;
-    margin-top: calc(var(--spacing-unit) * 1.5);
-}
-
-@media (max-width: 768px) {
-    .container.orders-page-container h1 { font-size: calc(var(--font-size-base) * 1.6); } /* ~25px */
-    .container.orders-page-container h2 { font-size: calc(var(--font-size-base) * 1.35); } /* ~21px */
-    .container.orders-page-container h3 { font-size: calc(var(--font-size-base) * 1.15); } /* ~18px */
-
-    .container.orders-page-container {
-        padding: var(--spacing-unit) calc(var(--spacing-unit)*0.75);
-    }
-    th, td {
-        padding: calc(var(--spacing-unit)*0.6) calc(var(--spacing-unit)*0.5); /* ~10px 8px */
-    }
-    tbody td {
-        font-size: calc(var(--font-size-sm)*0.95); /* Slightly smaller */
-    }
-    .button { /* Adjust local .button class if kept */
-        font-size: calc(var(--font-size-sm)*0.95);
-        padding: calc(var(--spacing-unit)*0.35) calc(var(--spacing-unit)*0.7);
-    }
-}
-
-@media (max-width: 480px) {
-    .container.orders-page-container h1 { font-size: calc(var(--font-size-base) * 1.4); } /* ~22px */
-    .container.orders-page-container h2 { font-size: calc(var(--font-size-base) * 1.2); } /* ~19px */
-    .order-summary-card p { font-size: var(--font-size-sm); }
-
-    th, td {
-        padding: calc(var(--spacing-unit)*0.5) calc(var(--spacing-unit)*0.4); /* ~8px 6px */
-        font-size: calc(var(--font-size-sm)*0.9); /* Even smaller font in table cells */
-    }
-    tbody td {
-        font-size: calc(var(--font-size-sm)*0.9);
-    }
-    table { min-width: auto; } /* Allow table to shrink, rely on scroll */
+    font-size: 18px;
+    padding: 20px;
 }

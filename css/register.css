@@ -1,177 +1,61 @@
-/* register.css */
-
-/* Body styling is inherited from css/index.css.
-   This page has a unique gradient background. Scope with a class if needed. */
-body.register-page-specific-background { /* Example: if this specific BG is desired */
-    background: linear-gradient(to right, rgba(62, 6, 214, 0.493), rgba(24, 165, 11, 0.6));
-    /* color: #fff; */
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: 
+        linear-gradient(to right, rgba(62, 6, 214, 0.493), rgba(24, 165, 11, 0.6));
+    background-size: cover;
 }
 
-.register-main-container {
+.register-container {
     display: flex;
     justify-content: center;
     align-items: center;
-    min-height: calc(100vh - 60px); /* Assumes 60px navbar height */
-    padding: var(--spacing-unit);
-    box-sizing: border-box;
+    height: 90vh;
 }
 
-.register-container { /* May be redundant */
+form {
+    background: rgba(255, 255, 255, 0.9);
+    padding: 40px 30px;
+    border-radius: 12px;
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
     width: 100%;
+    max-width: 400px;
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
 }
 
-.register-card {
-    background-color: rgba(var(--bg-color-rgb, 255, 255, 255), 0.15); /* Theme-aware */
-    padding: calc(var(--spacing-unit) * 1.5) calc(var(--spacing-unit) * 1.25); /* ~24px 20px */
-    border-radius: var(--border-radius-lg);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    box-shadow: var(--box-shadow-lg);
-    width: 100%;
-    max-width: 420px;
+form h2 {
+    margin-bottom: 20px;
     text-align: center;
-    color: var(--text-color); /* Theme text color for card content */
-    border: 1px solid transparent;
-}
-body.register-page-specific-background .register-card {
-    background-color: rgba(255, 255, 255, 0.15); /* Keep light overlay on specific BG */
-    color: #333; /* Ensure text is readable on this specific overlay */
-}
-body.light-theme .register-card { border-color: #ddd; }
-body.dark-theme .register-card { border-color: #444; }
-
-
-.register-card h2 {
-    margin-bottom: calc(var(--spacing-unit) * 1.25); /* ~20px */
-    font-size: calc(var(--font-size-base) * 1.75); /* ~28px, aligns with global H2 */
-    color: var(--text-color);
-    font-weight: var(--font-weight-bold);
-}
-body.register-page-specific-background .register-card h2 { color: #333; }
-
-
-.register-card form div {
-    margin-bottom: var(--spacing-unit); /* ~16px */
-    text-align: left;
+    color: #333;
 }
 
-.register-card label {
-    display: block;
-    margin-bottom: calc(var(--spacing-unit) * 0.3); /* ~5px */
-    font-weight: var(--font-weight-bold);
-    color: var(--text-color);
-    font-size: var(--font-size-sm); /* ~14px */
+input {
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
 }
 
-.register-card input[type="text"],
-.register-card input[type="email"],
-.register-card input[type="password"] {
-    width: 100%;
-    padding: calc(var(--spacing-unit) * 0.75); /* ~12px */
-    border: 1px solid #ccc; /* Default, themed below */
-    border-radius: var(--border-radius-base);
-    outline: none;
-    box-sizing: border-box;
-    font-size: var(--font-size-base);
-    color: var(--text-color);
-    background-color: var(--bg-color);
-}
-body.light-theme .register-card input[type="text"],
-body.light-theme .register-card input[type="email"],
-body.light-theme .register-card input[type="password"] {
-    border-color: #ccc;
-}
-body.dark-theme .register-card input[type="text"],
-body.dark-theme .register-card input[type="email"],
-body.dark-theme .register-card input[type="password"] {
-    border-color: #555;
-    background-color: #2c2c2c;
+button {
+    padding: 12px;
+    background-color: #00bfff;
+    color: rgb(0, 0, 0);
+    border: none;
+    border-radius: 6px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background 0.3s;
 }
 
-
-.register-card input[type="text"]:focus,
-.register-card input[type="email"]:focus,
-.register-card input[type="password"]:focus {
-    border-color: var(--link-color);
-    box-shadow: 0 0 0 0.2rem rgba(var(--link-color-rgb, 0, 123, 255), 0.25);
+button:hover {
+    background-color: #009acd;
 }
 
-/* Register button should use global .btn class in PHP */
-/* Example: <button type="submit" class="btn">Register</button> */
-/* The green color can be a modifier class like .btn-success if defined globally, or kept here */
-.register-card button[type="submit"] {
-    width: 100%;
-    margin-top: calc(var(--spacing-unit) * 0.5);
-    /* Specific background color if not using a global .btn-success type */
-    background-color: var(--btn-success-bg, #28a745); /* Assuming a success variable or fallback */
-    color: var(--btn-success-text, #fff);
-    /* Other styles (padding, font-size, etc.) from .btn */
-}
-.register-card button[type="submit"]:hover {
-    background-color: var(--btn-success-hover-bg, #218838);
-}
-
-
-.message { /* General class for messages */
-    padding: var(--spacing-unit);
-    margin-top: var(--spacing-unit);
-    border-radius: var(--border-radius-base);
-    font-weight: var(--font-weight-normal);
-    font-size: var(--font-size-sm);
+.message {
+    margin-top: 10px;
     text-align: center;
-}
-.success-message { /* Defined for consistency with login.php structure */
-    color: var(--success-text, #0f5132);
-    background-color: var(--success-bg, rgba(209, 231, 221, 0.9));
-    border: 1px solid var(--success-border, #badbcc);
-}
-.error-message {
-    color: var(--danger-text, #721c24);
-    background-color: var(--danger-bg, rgba(248, 215, 218, 0.9));
-    border: 1px solid var(--danger-border, #f5c6cb);
-}
-.message a { /* For "Login now" link */
-    color: var(--link-color); /* Use theme link color */
-    font-weight: var(--font-weight-bold);
-    text-decoration: underline;
-}
-.message a:hover {
-    color: var(--link-hover);
-}
-
-
-.form-switch-link {
-    margin-top: var(--spacing-unit);
-    font-size: var(--font-size-sm);
-    color: var(--text-color);
-    opacity: 0.9;
-}
-.form-switch-link a { /* Link color from global 'a' */
-    font-weight: var(--font-weight-bold);
-}
-
-/* Responsive adjustments */
-@media (max-width: 480px) {
-    .register-main-container {
-        padding: calc(var(--spacing-unit) * 0.75);
-    }
-    .register-card {
-        padding: calc(var(--spacing-unit) * 1.25) var(--spacing-unit);
-    }
-    .register-card h2 {
-        font-size: calc(var(--font-size-base) * 1.5); /* ~24px */
-    }
-    .register-card input[type="text"],
-    .register-card input[type="email"],
-    .register-card input[type="password"] {
-        font-size: calc(var(--font-size-base) * 0.95); /* ~15px */
-    }
-    .register-card label,
-    .message,
-    .form-switch-link {
-        font-size: calc(var(--font-size-sm) * 0.95);
-    }
+    color: #d10000;
+    font-size: 14px;
 }

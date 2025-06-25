@@ -1,340 +1,118 @@
-/* admin.css */
-/* Remove local :root variables, use global ones from index.css */
+:root {
+    --primary-color: #4CAF50;
+    --hover-color: #45a049;
+    --bg-color: #f5f7fa;
+    --table-bg: #ffffff;
+    --table-header-bg: #333;
+    --table-header-text: #ffffff;
+    --text-color: #333;
+}
 
 body {
-    font-family: var(--font-family-sans-serif); /* Global font family */
-    background: var(--bg-color); /* Global background color */
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background: var(--bg-color);
     margin: 0;
-    padding: 0; /* Removed padding-top, assuming admin pages also use header.php which applies padding-top to body */
-    color: var(--text-color); /* Global text color */
-    line-height: var(--line-height-base); /* Global line height */
+    padding: 0;
+    color: var(--text-color);
 }
 
-.container { /* Admin page content container */
-    max-width: 900px; /* Or var(--container-max-width) if it should match frontend */
-    margin: calc(var(--spacing-unit) * 2) auto; /* Approx 32px auto */
-    background: var(--bg-color); /* Use theme bg, or a slightly offset version if needed */
-    padding: calc(var(--spacing-unit) * 1.5); /* Approx 24px */
-    border-radius: var(--border-radius-lg); /* Global border radius */
-    box-shadow: var(--box-shadow); /* Global box shadow */
-    border: 1px solid transparent;
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 30px;
+    border-radius: 12px;
+    box-shadow: 0 0 12px rgba(0, 0, 0, 0.05);
 }
-body.light-theme .container { border-color: #ddd; }
-body.dark-theme .container { border-color: #444; background-color: #2c2c2c; /* Slightly lighter than body for contrast */ }
 
-
-h1, h2, h3 { /* Will inherit from global h1,h2,h3 in index.css */
-    /* Or, if admin needs distinct heading styles: */
-    /* font-family: var(--font-family-sans-serif); */
+h1, h2, h3 {
     color: var(--text-color);
     text-align: center;
-    margin-bottom: var(--spacing-unit);
-    font-weight: var(--font-weight-bold);
-}
-/* Adjust sizes if admin needs different scale than frontend */
-.container h1 { font-size: calc(var(--font-size-base) * 1.8); }
-.container h2 { font-size: calc(var(--font-size-base) * 1.5); }
-.container h3 { font-size: calc(var(--font-size-base) * 1.25); }
-
-
-p { /* Inherits from global p style in index.css */
-    /* font-size: var(--font-size-base); */
-    /* line-height: var(--line-height-base); */
-    /* margin-bottom: var(--spacing-unit); */
+    margin-bottom: 20px;
 }
 
-.table-responsive-wrapper { /* Added wrapper for responsive tables */
-    overflow-x: auto;
-    width: 100%;
-    margin-top: var(--spacing-unit);
-    margin-bottom: var(--spacing-unit);
-    border-radius: var(--border-radius-base);
-    box-shadow: var(--box-shadow-sm);
-    border: 1px solid transparent;
+p {
+    font-size: 16px;
+    line-height: 1.5;
+    margin: 10px 0;
 }
-body.light-theme .table-responsive-wrapper { border-color: #ddd; }
-body.dark-theme .table-responsive-wrapper { border-color: #444; }
-
 
 table {
     width: 100%;
-    min-width: 500px; /* Min width before scroll, adjust as needed */
     border-collapse: collapse;
-    background: var(--bg-color); /* Theme table background */
-    /* margin: var(--spacing-unit) 0; /* Moved margin to wrapper */
-    /* box-shadow: var(--box-shadow-sm); /* Moved shadow to wrapper */
-    /* border-radius: var(--border-radius-base); /* Moved radius to wrapper */
-    /* overflow: hidden; /* Moved to wrapper */
-    color: var(--text-color);
+    background: var(--table-bg);
+    margin: 20px 0;
+    box-shadow: 0 0 8px rgba(0, 0, 0, 0.05);
+    border-radius: 8px;
+    overflow: hidden;
 }
 
 th, td {
-    padding: calc(var(--spacing-unit) * 0.75); /* Approx 12px */
-    text-align: left; /* Usually better for tables */
-    border-bottom: 1px solid var(--border-color, #e0e0e0); /* Theme-aware border */
-    font-size: var(--font-size-sm); /* Smaller font for admin tables */
+    padding: 14px 16px;
+    text-align: center;
+    border-bottom: 1px solid #ddd;
 }
-body.light-theme th, body.light-theme td { border-color: #dee2e6; }
-body.dark-theme th, body.dark-theme td { border-color: #454d55; }
-
 
 th {
-    background: var(--nav-bg); /* Use nav background for table headers for consistency */
-    color: var(--nav-text);
-    font-weight: var(--font-weight-bold); /* Use global bold */
-    text-transform: uppercase;
-    letter-spacing: 0.5px;
+    background: var(--table-header-bg);
+    color: var(--table-header-text);
+    font-weight: 600;
 }
 
-tbody tr:hover { /* Use rgba with theme text color for hover */
-    background-color: rgba(var(--text-color-rgb, 0,0,0), 0.05);
+tr:hover {
+    background-color: #f1f1f1;
 }
 
-/* General link styling is inherited from index.css */
-/* a { ... } */
-
-.back-link, .action-link { /* These should use global .btn classes or extend them */
-    /* Example for .back-link to look like a secondary button:
-       <a href="..." class="btn btn-secondary back-link-custom">Back</a>
-       Then .back-link-custom would only add specific margins if needed. */
-    display: inline-block;
-    margin-top: var(--spacing-unit);
-    padding: calc(var(--spacing-unit)*0.5) var(--spacing-unit);
-    border-radius: var(--border-radius-base);
+a {
     text-decoration: none;
-    font-weight: var(--font-weight-normal);
-    transition: background-color 0.2s ease, color 0.2s ease, transform 0.15s ease;
+    color: var(--primary-color);
+    font-weight: 500;
+}
+
+a:hover {
+    text-decoration: underline;
 }
 
 .back-link {
-    background-color: var(--btn-secondary-bg);
-    color: var(--btn-secondary-text);
-    border: 1px solid var(--btn-secondary-bg); /* Or a specific border color */
+    display: inline-block;
+    margin-top: 20px;
+    color: #333;
+    background: #eee;
+    padding: 10px 18px;
+    border-radius: 6px;
+    transition: background 0.3s;
 }
+
 .back-link:hover {
-    background-color: var(--btn-secondary-hover-bg);
-    color: var(--btn-secondary-text);
-    transform: translateY(-1px);
-    text-decoration: none;
+    background: #ddd;
 }
 
-.action-link { /* This could be a primary button */
-    background: var(--btn-primary-bg);
-    color: var(--btn-primary-text);
-    font-weight: var(--font-weight-bold);
+.action-link {
+    display: inline-block;
+    padding: 8px 16px;
+    background: var(--primary-color);
+    color: #fff;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.3s ease;
 }
+
 .action-link:hover {
-    background: var(--btn-primary-hover-bg);
-    color: var(--btn-primary-text);
-    transform: translateY(-1px);
-    text-decoration: none;
+    background: var(--hover-color);
 }
 
-
-/* Responsive adjustments */
+/* Optional Responsive */
 @media (max-width: 768px) {
     .container {
-        padding: var(--spacing-unit);
-        margin-top: var(--spacing-unit);
-        margin-bottom: var(--spacing-unit);
+        padding: 20px;
     }
 
-    table, th, td { /* Font size already uses --font-size-sm, can adjust if needed */
-        /* font-size: calc(var(--font-size-sm) * 0.95); */
+    table, th, td {
+        font-size: 14px;
     }
 
     th, td {
-        padding: calc(var(--spacing-unit) * 0.5); /* Approx 8px */
+        padding: 10px;
     }
-}
-
-@media (max-width: 480px) {
-    /* Further reduce padding or font sizes if necessary for very small screens */
-    .container h1 { font-size: calc(var(--font-size-base) * 1.5); }
-    .container h2 { font-size: calc(var(--font-size-base) * 1.25); }
-    .container h3 { font-size: var(--font-size-base); }
-
-    .back-link, .action-link { /* Stack buttons or make full width */
-        width: 100%;
-        text-align: center;
-        margin-bottom: calc(var(--spacing-unit)*0.5);
-    }
-
-/* === Admin Subnav Styles === */
-.admin-subnav {
-    background-color: #343a40; /* Dark background for admin subnav */
-    padding: calc(var(--spacing-unit) * 0.5) 0; /* Approx 8px top/bottom */
-    box-shadow: var(--box-shadow-sm);
-    border-bottom: 2px solid var(--accent-color); /* Accent border */
-}
-
-.admin-subnav .container { /* Ensure container inside subnav behaves */
-    max-width: 1200px; /* Or align with your main container max-width */
-    padding-left: var(--spacing-unit); /* Consistent padding with main container */
-    padding-right: var(--spacing-unit);
-}
-
-ul.admin-nav-links {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    justify-content: flex-start; /* Align links to the start */
-    gap: calc(var(--spacing-unit) * 1.5); /* Approx 24px gap */
-}
-
-ul.admin-nav-links li a {
-    color: var(--nav-text, #ecf0f1); /* Use nav text color, or a light color */
-    text-decoration: none;
-    font-weight: var(--font-weight-normal);
-    padding: calc(var(--spacing-unit) * 0.4) calc(var(--spacing-unit) * 0.8); /* Smaller padding */
-    border-radius: var(--border-radius-base);
-    transition: background-color 0.2s ease, color 0.2s ease;
-    font-size: var(--font-size-sm); /* Smaller font for subnav */
-}
-
-ul.admin-nav-links li a:hover,
-ul.admin-nav-links li a.active {
-    background-color: var(--accent-color);
-    color: var(--nav-bg); /* Text color that contrasts with accent color */
-    text-decoration: none;
-}
-
-/* Responsive Admin Subnav */
-@media (max-width: 768px) {
-    ul.admin-nav-links {
-        gap: var(--spacing-unit); /* Reduce gap */
-        justify-content: center; /* Center links on smaller screens */
-        flex-wrap: wrap; /* Allow links to wrap */
-    }
-    ul.admin-nav-links li a {
-        font-size: calc(var(--font-size-sm) * 0.95); /* Slightly smaller */
-        padding: calc(var(--spacing-unit)*0.3) calc(var(--spacing-unit)*0.6);
-    }
-}
-
-/* === Admin Page Specific Enhancements === */
-.admin-page-container { /* General container for admin content sections */
-    /* Styles like background, padding, etc. are inherited from .container in this file */
-}
-
-.admin-actions-bar {
-    margin-bottom: var(--spacing-unit);
-    text-align: right; /* Align button to the right */
-}
-
-.admin-message {
-    padding: var(--spacing-unit);
-    margin-bottom: var(--spacing-unit);
-    border-radius: var(--border-radius-base);
-    text-align: center;
-    font-weight: var(--font-weight-normal);
-}
-
-/* === Admin Form Styles === */
-.admin-form-container { /* Specific container for pages with a main form */
-    max-width: 700px; /* Adjust as needed */
-    /* Inherits .container styles like background, padding, etc. from earlier in this file if class is combined,
-       or define them here if it's a standalone container type. */
-}
-
-.admin-form .form-group {
-    margin-bottom: var(--spacing-unit); /* Approx 16px */
-}
-
-.admin-form label {
-    display: block;
-    margin-bottom: calc(var(--spacing-unit) * 0.35); /* Approx 5-6px */
-    font-weight: var(--font-weight-bold);
-    color: var(--text-color);
-    font-size: var(--font-size-sm); /* Approx 14px */
-}
-
-.admin-form input[type="text"],
-.admin-form input[type="number"],
-.admin-form input[type="file"],
-.admin-form textarea,
-.admin-form select {
-    width: 100%;
-    padding: calc(var(--spacing-unit) * 0.6); /* Approx 10px */
-    font-size: var(--font-size-base); /* Approx 16px */
-    border-radius: var(--border-radius-base);
-    border: 1px solid #ccc; /* Default, themed below */
-    box-sizing: border-box;
-    background-color: var(--bg-color);
-    color: var(--text-color);
-    transition: border-color .15s ease-in-out, box-shadow .15s ease-in-out;
-}
-body.light-theme .admin-form input,
-body.light-theme .admin-form textarea,
-body.light-theme .admin-form select {
-    border-color: #ccc;
-}
-body.dark-theme .admin-form input,
-body.dark-theme .admin-form textarea,
-body.dark-theme .admin-form select {
-    border-color: #555;
-    background-color: #2c2c2c; /* Darker input background */
-}
-
-
-.admin-form input[type="text"]:focus,
-.admin-form input[type="number"]:focus,
-.admin-form input[type="file"]:focus,
-.admin-form textarea:focus,
-.admin-form select:focus {
-    border-color: var(--link-color); /* Use themed link color for focus */
-    box-shadow: 0 0 0 0.2rem rgba(var(--link-color-rgb, 0, 123, 255), 0.25); /* Themed focus shadow */
-    outline: none;
-}
-
-.admin-form textarea {
-    resize: vertical;
-    min-height: calc(var(--spacing-unit) * 7); /* Approx 112px */
-}
-
-.admin-form input[type="file"] {
-    padding: calc(var(--spacing-unit)*0.4); /* Slightly less padding for file input */
-}
-.admin-form small {
-    display: block;
-    margin-top: calc(var(--spacing-unit)*0.25);
-    font-size: var(--font-size-sm);
-    opacity: 0.8;
-}
-
-.admin-form .form-actions {
-    margin-top: calc(var(--spacing-unit) * 1.5); /* Approx 24px */
-    display: flex;
-    justify-content: flex-start; /* Align buttons to the start */
-    gap: var(--spacing-unit); /* Space between buttons */
-}
-/* Buttons in .form-actions should use global .btn, .btn-primary, .btn-secondary classes */
-.admin-message.success-message { /* Using global success/error message styles is preferred */
-    color: var(--success-text, #0f5132);
-    background-color: var(--success-bg, rgba(209, 231, 221, 0.9));
-    border: 1px solid var(--success-border, #badbcc);
-}
-.admin-message.error-message {
-    color: var(--danger-text, #721c24);
-    background-color: var(--danger-bg, rgba(248, 215, 218, 0.9));
-    border: 1px solid var(--danger-border, #f5c6cb);
-}
-
-
-/* Styling for action buttons in table cells */
-td.actions-cell .btn {
-    margin-right: calc(var(--spacing-unit) * 0.5); /* Space between buttons */
-    margin-bottom: calc(var(--spacing-unit) * 0.25); /* Space if they wrap */
-}
-td.actions-cell .btn:last-child {
-    margin-right: 0;
-}
-
-/* Utility class for smaller buttons if not already global */
-.btn-sm {
-    padding: calc(var(--spacing-unit)*0.3) calc(var(--spacing-unit)*0.6); /* Approx 5px 10px */
-    font-size: var(--font-size-sm); /* Approx 14px */
-    font-weight: var(--font-weight-normal);
-}
 }
